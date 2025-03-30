@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bk1l3kpxw5qm7"]
 
-[ext_resource type="Script" path="res://scenes/input_sync.gd" id="1_dsi2q"]
+[ext_resource type="Script" uid="uid://bent3eh1nogxi" path="res://scenes/input_sync.gd" id="1_dsi2q"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_x5nd7"]
 
