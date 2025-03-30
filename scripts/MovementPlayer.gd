@@ -13,7 +13,7 @@ func _physics_process(delta:float) -> void:
 
 	
 		# Movement Input	
-	var move_input = Input.get_axis("move_left","move_right")
+	var move_input = Input.get_axis("moved_left","move_right")
 	print(move_input)
 	velocity.x = move_toward(velocity.x,move_input*speed,acceleration*delta)
 		# Animation Movement
