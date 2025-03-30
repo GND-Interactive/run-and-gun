@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://00f6chaif805"]
 
-[ext_resource type="Script" path="res://scenes/main.gd" id="1_0wfyh"]
+[ext_resource type="Script" uid="uid://cgxewe8sy2juq" path="res://scenes/main.gd" id="1_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://ey2br6wp0335" path="res://r99327.png" id="1_sugp2"]
-[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://benk0u8yfe4ni" path="res://scenes/player.tscn" id="2_0wfyh"]
 
 [node name="Main" type="Node2D"]
 position = Vector2(-1, -1)
