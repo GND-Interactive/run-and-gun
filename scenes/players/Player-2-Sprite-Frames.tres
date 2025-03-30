@@ -1,0 +1,158 @@
+[gd_resource type="SpriteFrames" load_steps=33 format=3 uid="uid://ctr1m864nio17"]
+
+[ext_resource type="Texture2D" uid="uid://b8l6kshfiv5r6" path="res://assets/players/Char 2/with hands/death_0.png" id="11_q36o6"]
+[ext_resource type="Texture2D" uid="uid://b5reajdrpdyfl" path="res://assets/players/Char 2/with hands/death_1.png" id="12_mupd6"]
+[ext_resource type="Texture2D" uid="uid://c1w7qud6cweiu" path="res://assets/players/Char 2/with hands/death_2.png" id="13_thuqu"]
+[ext_resource type="Texture2D" uid="uid://uxpgxhhfcbdg" path="res://assets/players/Char 2/with hands/death_3.png" id="14_pimwq"]
+[ext_resource type="Texture2D" uid="uid://7xru2fpjufrh" path="res://assets/players/Char 2/with hands/death_4.png" id="15_me7it"]
+[ext_resource type="Texture2D" uid="uid://8jtg4jbkmmv5" path="res://assets/players/Char 2/with hands/death_5.png" id="16_0vbdn"]
+[ext_resource type="Texture2D" uid="uid://dkwnc43jwijrg" path="res://assets/players/Char 2/with hands/death_6.png" id="17_2gocl"]
+[ext_resource type="Texture2D" uid="uid://b2s0m46i1kac2" path="res://assets/players/Char 2/with hands/death_7.png" id="18_g2y17"]
+[ext_resource type="Texture2D" uid="uid://mw5l6oi6iu4f" path="res://assets/players/Char 2/with hands/death_8.png" id="19_kd6av"]
+[ext_resource type="Texture2D" uid="uid://0u0w63yrevld" path="res://assets/players/Char 2/with hands/death_9.png" id="20_ckheq"]
+[ext_resource type="Texture2D" uid="uid://q8hwyaop5rfm" path="res://assets/players/Char 2/with hands/hit_0.png" id="24_h8uts"]
+[ext_resource type="Texture2D" uid="uid://cndrttvob3fcv" path="res://assets/players/Char 2/with hands/hit_1.png" id="25_2qo4c"]
+[ext_resource type="Texture2D" uid="uid://bg3wbggx7kx6v" path="res://assets/players/Char 2/with hands/hit_2.png" id="26_gnutv"]
+[ext_resource type="Texture2D" uid="uid://dh6ogmwhhj8xm" path="res://assets/players/Char 2/with hands/idle_0.png" id="33_0vrjc"]
+[ext_resource type="Texture2D" uid="uid://bs13o2ugqlfqp" path="res://assets/players/Char 2/with hands/idle_1.png" id="34_sbclq"]
+[ext_resource type="Texture2D" uid="uid://c21wpt8b3t60s" path="res://assets/players/Char 2/with hands/idle_2.png" id="35_36fif"]
+[ext_resource type="Texture2D" uid="uid://cwesslxfqpvwf" path="res://assets/players/Char 2/with hands/idle_3.png" id="36_8qc7c"]
+[ext_resource type="Texture2D" uid="uid://mah282ngg8y2" path="res://assets/players/Char 2/with hands/idle_4.png" id="37_1i1jo"]
+[ext_resource type="Texture2D" uid="uid://c5ollhxgfvl8n" path="res://assets/players/Char 2/with hands/idle_5.png" id="38_1usfv"]
+[ext_resource type="Texture2D" uid="uid://bjhr2xc5m5ujx" path="res://assets/players/Char 2/with hands/roll_0.png" id="44_2piyf"]
+[ext_resource type="Texture2D" uid="uid://dmkq5rpebyt78" path="res://assets/players/Char 2/with hands/roll_1.png" id="45_ootnj"]
+[ext_resource type="Texture2D" uid="uid://cubko56pr7ixj" path="res://assets/players/Char 2/with hands/roll_2.png" id="46_bajcu"]
+[ext_resource type="Texture2D" uid="uid://csalb3gibwcbc" path="res://assets/players/Char 2/with hands/roll_3.png" id="47_5lwvi"]
+[ext_resource type="Texture2D" uid="uid://dqa72yx2vxyum" path="res://assets/players/Char 2/with hands/roll_4.png" id="48_l713y"]
+[ext_resource type="Texture2D" uid="uid://7ouwgawh36al" path="res://assets/players/Char 2/with hands/walk_0.png" id="57_o3mgk"]
+[ext_resource type="Texture2D" uid="uid://dp0khj4s3q0xk" path="res://assets/players/Char 2/with hands/walk_1.png" id="58_h8oix"]
+[ext_resource type="Texture2D" uid="uid://c45pmrixvw6lk" path="res://assets/players/Char 2/with hands/walk_2.png" id="59_wej1x"]
+[ext_resource type="Texture2D" uid="uid://cjta0msngbrbj" path="res://assets/players/Char 2/with hands/walk_3.png" id="60_twq0g"]
+[ext_resource type="Texture2D" uid="uid://bchybnmes6y3h" path="res://assets/players/Char 2/with hands/walk_4.png" id="61_ju7e2"]
+[ext_resource type="Texture2D" uid="uid://bxfdhwg42dnon" path="res://assets/players/Char 2/with hands/walk_5.png" id="62_uqum2"]
+[ext_resource type="Texture2D" uid="uid://853qgyuu4act" path="res://assets/players/Char 2/with hands/walk_6.png" id="63_abs6o"]
+[ext_resource type="Texture2D" uid="uid://di4dl4o623jy3" path="res://assets/players/Char 2/with hands/walk_7.png" id="64_visf8"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_q36o6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_mupd6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_thuqu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_pimwq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_me7it")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_0vbdn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_2gocl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_g2y17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_kd6av")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_ckheq")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_h8uts")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_2qo4c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_gnutv")
+}],
+"loop": true,
+"name": &"Hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("33_0vrjc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_sbclq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_36fif")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_8qc7c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_1i1jo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_1usfv")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("44_2piyf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_ootnj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_bajcu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_5lwvi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_l713y")
+}],
+"loop": true,
+"name": &"Roll",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("57_o3mgk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_h8oix")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_wej1x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_twq0g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_ju7e2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_uqum2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_abs6o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_visf8")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
