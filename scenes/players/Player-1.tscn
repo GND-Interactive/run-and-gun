@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://bge5mughwodej"]
+[gd_scene load_steps=28 format=3 uid="uid://ufhdvab28h2x"]
 
-[ext_resource type="Script" uid="uid://cw06trdvijq7y" path="res://scripts/MovementPlayer.gd" id="1_chaey"]
-[ext_resource type="SpriteFrames" uid="uid://biaj7jb0gmace" path="res://scenes/players/Player-1-Sprite-Frames.tres" id="2_23cqt"]
+[ext_resource type="Script" uid="uid://cw06trdvijq7y" path="res://scripts/MovementPlayer.gd" id="1_qmum8"]
+[ext_resource type="SpriteFrames" uid="uid://biaj7jb0gmace" path="res://scenes/players/Player-1-Sprite-Frames.tres" id="2_jjjug"]
+[ext_resource type="PackedScene" uid="uid://bk1l3kpxw5qm7" path="res://scenes/input_sync.tscn" id="3_u1v1j"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_chaey"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ol77x"]
 
 [sub_resource type="Animation" id="Animation_kye8k"]
 resource_name = "Death"
@@ -219,7 +220,7 @@ break_loop_at_end = true
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_v1hx7"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wtooe"]
 states/Death/node = SubResource("AnimationNodeAnimation_dylxg")
 states/Death/position = Vector2(408, 292)
 states/End/position = Vector2(1048, 100)
@@ -234,26 +235,34 @@ states/Walk/position = Vector2(500, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_delv0"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_8tlq2"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_qqfcm"), "Walk", "Death", SubResource("AnimationNodeStateMachineTransition_vnxbj"), "Idle", "Hit", SubResource("AnimationNodeStateMachineTransition_amv45"), "Walk", "Hit", SubResource("AnimationNodeStateMachineTransition_cpmc8"), "Idle", "Roll", SubResource("AnimationNodeStateMachineTransition_8v1xs"), "Walk", "Roll", SubResource("AnimationNodeStateMachineTransition_sexqa"), "Roll", "Idle", SubResource("AnimationNodeStateMachineTransition_3u78i"), "Hit", "Idle", SubResource("AnimationNodeStateMachineTransition_gchrc")]
 graph_offset = Vector2(-108, -117)
 
-[node name="Player-1" type="Node2D"]
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_qmum8")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-script = ExtResource("1_chaey")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-sprite_frames = ExtResource("2_23cqt")
-animation = &"Death"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_jjjug")
+animation = &"Idle"
 frame = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 408)
 scale = Vector2(35, 35)
-shape = SubResource("RectangleShape2D_chaey")
+shape = SubResource("RectangleShape2D_ol77x")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_isrkm")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="CharacterBody2D"]
-tree_root = SubResource("AnimationNodeStateMachine_v1hx7")
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_wtooe")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="InputSync" parent="." instance=ExtResource("3_u1v1j")]
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.001
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
