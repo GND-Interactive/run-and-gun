@@ -16,3 +16,5 @@ mono_crash.*.json
 
 builds/
 
+# Ignores file types
+*.import
