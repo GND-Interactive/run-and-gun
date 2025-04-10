@@ -30,3 +30,9 @@ offset_bottom = 23.0
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
 wait_time = 0.001
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://cj48gmj04kicp")
+spawn_path = NodePath(".")
+
+[node name="Marker2D" type="Marker2D" parent="."]

@@ -2,12 +2,17 @@ extends CharacterBody2D
 @onready var input_sync: input_sync = $InputSync
 @onready var label: Label = $Label
 @onready var timer: Timer = $Timer
-
+var bullet_scene = preload("res://scenes/bullet.tscn")
+@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var playback = animation_tree["parameters/playback"]
 var speed = 300
 var acceleration = 2000
 var player_alive = true
-var color = null
+var color :Color 
 var damage= 1
+@onready var bullet_spawner: Marker2D = $BulletSpawner
+@onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
+@onready var pivot: Node2D = $Pivot
 
 func _physics_process(delta: float) -> void:
 	
@@ -16,6 +21,21 @@ func _physics_process(delta: float) -> void:
 	
 	velocity.x = move_toward(velocity.x, move_input.x * speed, acceleration * delta)
 	velocity.y = move_toward(velocity.y, move_input.y * speed, acceleration * delta)
+	if input_sync.fire:
+		input_sync.fire = false
+		if is_multiplayer_authority():
+			fire.rpc_id(1,input_sync.fire_dir)
+	if move_input.x:
+		pivot.scale.x= sign(move_input.x)
+		
+	if move_input:
+		update_animation_state.rpc(true)
+	else:
+		update_animation_state.rpc(false)
+	
+		
+		
+	
 
 	# Movimiento físico
 	move_and_slide()
@@ -35,7 +55,24 @@ func send_data(pos:Vector2, vel:Vector2)-> void:
 	position=lerp(position,pos,0.5)
 	velocity=velocity.lerp(vel,0.5)
 	
+	
 
 func _on_sync()-> void:
 	send_data.rpc(position,velocity)
+@rpc("call_local")
+func fire(direction:Vector2):
+	Debug.log("fire")
+	var bullet_inst = bullet_scene.instantiate()
+	bullet_inst.global_position = bullet_spawner.global_position
+	print(color)
+	bullet_inst.change_color(color)
+	bullet_inst.direction = direction.normalized()
+	multiplayer_spawner.add_child(bullet_inst,true)
+@rpc("call_local")
+func update_animation_state(is_moving: bool):
+	if is_moving:
+		playback.travel("Walk")
+	else:
+		playback.travel("Idle")
+
 	

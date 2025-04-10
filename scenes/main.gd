@@ -12,9 +12,9 @@ func _ready() -> void:
 		print(player_scenes)
 		var player_inst= player_scenes[i].instantiate()
 		if i == 0:
-			player_inst.color = "red"
+			player_inst.color = Color(0,0,1)
 		else:
-			player_inst.color = "blue"
+			player_inst.color = Color(1,0,0)
 		print(player_inst.color)
 		players.add_child(player_inst)
 		player_inst.setup(player)
