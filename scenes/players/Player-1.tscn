@@ -260,7 +260,7 @@ anim_player = NodePath("../AnimationPlayer")
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 0.106
+wait_time = 0.001
 
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
