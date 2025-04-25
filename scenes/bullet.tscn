@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cj48gmj04kicp"]
+
+[ext_resource type="Script" uid="uid://c6r86t1ot6a1y" path="res://scripts/bullet.gd" id="1_y25gk"]
+[ext_resource type="Texture2D" uid="uid://cccmwe1yaf6pd" path="res://assets/bullet/01.png" id="2_l5glv"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_eoqba"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:b_color")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qncy5"]
+radius = 17.0294
+
+[node name="Bullet" type="Area2D"]
+light_mask = 4
+visibility_layer = 8
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_y25gk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.32, 0.456, 1, 1)
+texture = ExtResource("2_l5glv")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_eoqba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 0
+visibility_layer = 0
+shape = SubResource("CircleShape2D_qncy5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
