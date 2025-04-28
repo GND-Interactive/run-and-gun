@@ -4,6 +4,7 @@ extends Node2D
 @onready var enemies: Node2D = $"../Enemies"
 @onready var right_limit: StaticBody2D = $"right-limit"
 @onready var timer: Timer = $"../Timer"
+@onready var camera: Camera2D = $"../Camera2D"
 
 
 var CHANGE_STAGE_OFFSET: float = 500

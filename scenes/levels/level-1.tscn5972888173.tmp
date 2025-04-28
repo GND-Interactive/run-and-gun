@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bervrm08asanb"]
+[gd_scene load_steps=9 format=3 uid="uid://bervrm08asanb"]
 
 [ext_resource type="Script" uid="uid://cgxewe8sy2juq" path="res://scenes/main.gd" id="1_w8wmq"]
 [ext_resource type="PackedScene" uid="uid://ufhdvab28h2x" path="res://scenes/players/Player-1.tscn" id="2_67dni"]
 [ext_resource type="Texture2D" uid="uid://ey2br6wp0335" path="res://r99327.png" id="3_b6r43"]
 [ext_resource type="Script" uid="uid://dc1rf43vo6q8x" path="res://scripts/camera_movement.gd" id="3_wubvj"]
+[ext_resource type="PackedScene" uid="uid://do5lkn8swbjy" path="res://scenes/players/Player-2.tscn" id="4_a1qmq"]
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="4_gl321"]
 [ext_resource type="Script" uid="uid://boqevddxhy35r" path="res://scripts/borders.gd" id="4_ieimj"]
 
@@ -14,8 +15,11 @@ position = Vector2(-1, -1)
 script = ExtResource("1_w8wmq")
 player_scene = ExtResource("2_67dni")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(680, 410)
+script = ExtResource("3_wubvj")
+
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
 
 [node name="floor" type="Node2D" parent="."]
 
@@ -34,9 +38,13 @@ texture = ExtResource("3_b6r43")
 [node name="Players" type="Node2D" parent="."]
 position = Vector2(-2, 2)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(680, 410)
-script = ExtResource("3_wubvj")
+[node name="CharacterBody2D" parent="Players" instance=ExtResource("2_67dni")]
+position = Vector2(368, 265)
+scale = Vector2(0.12, 0.12)
+
+[node name="CharacterBody2D2" parent="Players" instance=ExtResource("4_a1qmq")]
+position = Vector2(499, 503)
+scale = Vector2(0.12, 0.12)
 
 [node name="Spawn" type="Node2D" parent="."]
 visible = false

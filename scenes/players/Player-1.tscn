@@ -236,6 +236,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-108, -117)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(0.1, 0.1)
 script = ExtResource("1_qmum8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

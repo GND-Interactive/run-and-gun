@@ -15,7 +15,6 @@ script = ExtResource("1_w8wmq")
 player_scene = ExtResource("2_67dni")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
 
 [node name="floor" type="Node2D" parent="."]
 

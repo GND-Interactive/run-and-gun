@@ -248,6 +248,7 @@ graph_offset = Vector2(13, -42)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_kiej1")
 animation = &"Idle_2"
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 408)
