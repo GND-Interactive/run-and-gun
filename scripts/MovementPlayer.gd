@@ -1,4 +1,5 @@
 extends CharacterBody2D
+
 @onready var input_sync: input_sync = $InputSync
 @onready var label: Label = $Label
 @onready var timer: Timer = $Timer
