@@ -282,3 +282,4 @@ position = Vector2(-1, 60)
 scale = Vector2(0.12, 0.12)
 sprite_frames = ExtResource("1_kiej1")
 animation = &"Idle_2"
+frame = 1

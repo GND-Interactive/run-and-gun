@@ -76,4 +76,10 @@ func update_animation_state(is_moving: bool):
 	else:
 		playback.travel("Idle")
 
+
+# Metodo para limitar el movimiento
+func stop_movement():
+	velocity.x = 0
+	velocity.y = 0
+	acceleration = 0
 	
