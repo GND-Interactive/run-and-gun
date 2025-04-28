@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cd0jd8wjhjg6x"]
+
+[ext_resource type="Script" uid="uid://dsjnx7mmehh3s" path="res://scripts/enemy.gd" id="1_8e3ao"]
+[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_38ino"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcftc"]
+size = Vector2(50, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8e3ao"]
+size = Vector2(54, 54)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_38ino"]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_8e3ao")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, 4)
+scale = Vector2(0.380312, 0.40375)
+texture = ExtResource("2_38ino")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(2, 4)
+shape = SubResource("RectangleShape2D_fcftc")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+light_mask = 8
+visibility_layer = 4
+position = Vector2(2, 4)
+shape = SubResource("RectangleShape2D_8e3ao")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_38ino")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
