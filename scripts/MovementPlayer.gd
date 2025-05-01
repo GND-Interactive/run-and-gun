@@ -77,9 +77,17 @@ func update_animation_state(is_moving: bool):
 		playback.travel("Idle")
 
 
-# Metodo para limitar el movimiento
-func stop_movement():
-	velocity.x = 0
-	velocity.y = 0
-	acceleration = 0
+## Bloquea el movimiento en dirección opuesta al otro jugador si están demasiado lejos
+func limit_movement(opponent_position: Vector2, max_distance: float):
+	var direction_to_opponent = opponent_position.x - global_position.x
+	var move_input = input_sync.move_input.x
+
+	var is_moving_away = sign(move_input) != sign(direction_to_opponent) and abs(global_position.x - opponent_position.x) > max_distance
+	
+	if is_moving_away:
+		velocity.x = 0
+		acceleration = 0
+	else:
+		acceleration = 2000  # Restauramos la aceleración si se mueve hacia el otro jugador
+
 	

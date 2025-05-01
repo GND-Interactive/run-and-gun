@@ -7,38 +7,39 @@ extends Node2D
 var player_1: CharacterBody2D 
 var player_2: CharacterBody2D
 
-# Camera limits
-var max_distance = 700  # distancia máxima permitida
+## Distancia máxima permitida entre jugadores
+var MAX_DISTANCE = 1200  
 
 func _process(delta):
 	if not player_1 or not player_2:
-		# Intentamos capturar los jugadores si todavía no los tenemos
 		var players = players_node.get_children()
 		if players.size() >= 2:
 			player_1 = players[0]
 			player_2 = players[1]
 			print("Jugadores encontrados correctamente.")
 		else:
-			return  # Todavía no hay dos jugadores, no hacemos nada
+			return
 			
 	# Una ves tenemos a ambos jugadores
 	print("players inicializados")
-	var current_distance = abs(player_1.global_position.x - player_2.global_position.x)
-	# El movimiento solo deberia detenerse cuando intentan alejarse, se deberia permitir cuando intentan acercarse
-	if current_distance > max_distance:
-		player_1.stop_movement()
-		player_2.stop_movement()
 	move_camera()
 
 func move_camera():
 	var distance_x = abs(player_1.global_position.x - player_2.global_position.x)
-	if distance_x > max_distance:
-		# Que hacer cuando la distancia es muy grande? 
-		return
-	
+
+	if distance_x > MAX_DISTANCE:
+		# Limitar movimiento solo si se están alejando demasiado
+		player_1.limit_movement(player_2.global_position, MAX_DISTANCE)
+		player_2.limit_movement(player_1.global_position, MAX_DISTANCE)
 	else:
+		# Restaurar aceleración si están dentro del rango permitido
+		player_1.acceleration = 2000
+		player_2.acceleration = 2000
+
+		# Actualizar posición de la cámara al punto medio
 		var midpoint_x = (player_1.global_position.x + player_2.global_position.x) / 2
 		camera.global_position.x = midpoint_x
+
 	
 	
 	
