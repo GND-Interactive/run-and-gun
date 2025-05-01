@@ -1,23 +1,17 @@
 [gd_scene load_steps=9 format=3 uid="uid://d3q2fdcvrknul"]
 
 [ext_resource type="Script" uid="uid://cgxewe8sy2juq" path="res://scenes/main.gd" id="1_h16t6"]
-[ext_resource type="PackedScene" uid="uid://ufhdvab28h2x" path="res://scenes/players/Player-1.tscn" id="2_is76t"]
+[ext_resource type="PackedScene" uid="uid://bge5mughwodej" path="res://scenes/players/Player-1.tscn" id="2_is76t"]
 [ext_resource type="Script" uid="uid://dc1rf43vo6q8x" path="res://scripts/camera_movement.gd" id="3_3qlp1"]
 [ext_resource type="Texture2D" uid="uid://ey2br6wp0335" path="res://r99327.png" id="4_ps8ek"]
-[ext_resource type="PackedScene" uid="uid://do5lkn8swbjy" path="res://scenes/players/Player-2.tscn" id="5_tgt37"]
+[ext_resource type="PackedScene" uid="uid://ckxlp8rdfeeaf" path="res://scenes/players/Player-2.tscn" id="5_tgt37"]
 [ext_resource type="Script" uid="uid://boqevddxhy35r" path="res://scripts/borders.gd" id="6_8n67j"]
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="7_7nori"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_urp3g"]
 
 [node name="Main" type="Node2D"]
-position = Vector2(-1, -1)
 script = ExtResource("1_h16t6")
-player_scene = ExtResource("2_is76t")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(680, 410)
-script = ExtResource("3_3qlp1")
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -40,21 +34,22 @@ position = Vector2(-2, 2)
 
 [node name="CharacterBody2D" parent="Players" instance=ExtResource("2_is76t")]
 position = Vector2(368, 265)
-scale = Vector2(0.12, 0.12)
 
 [node name="CharacterBody2D2" parent="Players" instance=ExtResource("5_tgt37")]
 position = Vector2(499, 503)
-scale = Vector2(0.12, 0.12)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(680, 410)
+script = ExtResource("3_3qlp1")
 
 [node name="Spawn" type="Node2D" parent="."]
-visible = false
 
 [node name="Marker2D" type="Marker2D" parent="Spawn"]
-position = Vector2(182, 241)
+position = Vector2(236, 247)
 gizmo_extents = 127.1
 
 [node name="Marker2D2" type="Marker2D" parent="Spawn"]
-position = Vector2(804, 255)
+position = Vector2(495, 497)
 gizmo_extents = 127.1
 
 [node name="borders" type="Node2D" parent="."]

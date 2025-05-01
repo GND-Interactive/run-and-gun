@@ -9,7 +9,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_urp3g"]
 
 [node name="Main" type="Node2D"]
-position = Vector2(-1, -1)
 script = ExtResource("1_w8wmq")
 
 [node name="Timer" type="Timer" parent="."]
@@ -37,14 +36,13 @@ position = Vector2(680, 410)
 script = ExtResource("3_wubvj")
 
 [node name="Spawn" type="Node2D" parent="."]
-visible = false
 
 [node name="Marker2D" type="Marker2D" parent="Spawn"]
-position = Vector2(182, 241)
+position = Vector2(229, 263)
 gizmo_extents = 127.1
 
 [node name="Marker2D2" type="Marker2D" parent="Spawn"]
-position = Vector2(804, 255)
+position = Vector2(361, 515)
 gizmo_extents = 127.1
 
 [node name="borders" type="Node2D" parent="."]
