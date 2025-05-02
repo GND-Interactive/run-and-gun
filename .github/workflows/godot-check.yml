@@ -2,7 +2,8 @@ name: Godot Project Check
 
 on:
   pull_request:
-    branches: [master]  # O la rama protegida que uses
+    branches:
+      - master
 
 jobs:
   godot-check:
@@ -15,8 +16,11 @@ jobs:
       - name: Set up Godot
         uses: chickensoft-games/setup-godot@v1
         with:
-          version: 4.2.1  # Cambia a la versión de Godot que usas
+          version: 4.4.1
           headless: true
+
+      - name: Check Godot version
+        run: godot --version
 
       - name: Run Godot check
         run: godot --headless --check-only
