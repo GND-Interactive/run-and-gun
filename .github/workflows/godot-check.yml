@@ -2,7 +2,7 @@ name: Godot Project Check
 
 on:
   pull_request:
-    branches: [main]  # O la rama protegida que uses
+    branches: [master]  # O la rama protegida que uses
 
 jobs:
   godot-check:
