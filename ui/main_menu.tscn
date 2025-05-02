@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://buxla4a3c3k2"]
+[gd_scene load_steps=7 format=3 uid="uid://buxla4a3c3k2"]
 
 [ext_resource type="Theme" uid="uid://bwgdrcgopd0s1" path="res://lobby/lobby_theme.tres" id="1_3qnx1"]
 [ext_resource type="Script" uid="uid://cnbk17iq1x68f" path="res://ui/main_menu.gd" id="2_p6ygj"]
-[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_xllby"]
+[ext_resource type="FontFile" uid="uid://cmi6201kug2db" path="res://assets/fonts/metalslug-font.ttf" id="3_8uxxo"]
+[ext_resource type="Texture2D" uid="uid://d0hto4uisjnyu" path="res://assets/img/Metal-Trigger.png" id="3_rmr83"]
+
+[sub_resource type="Gradient" id="Gradient_rmr83"]
+colors = PackedColorArray(0.952941, 0, 0, 1, 0.875769, 0.919225, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8uxxo"]
+gradient = SubResource("Gradient_rmr83")
+fill_from = Vector2(0.944954, 0.981651)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -14,6 +22,25 @@ grow_vertical = 2
 theme = ExtResource("1_3qnx1")
 script = ExtResource("2_p6ygj")
 
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = -208.0
+offset_right = 228.0
+offset_bottom = 208.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+texture = ExtResource("3_rmr83")
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -21,10 +48,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 140.0
-offset_top = -160.0
-offset_right = 640.0
-offset_bottom = 220.0
+offset_left = -250.0
+offset_top = -190.0
+offset_right = 250.0
+offset_bottom = 190.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -36,41 +63,34 @@ size_flags_horizontal = 4
 [node name="Host" type="Button" parent="MarginContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.603922, 0.411765, 0.141176, 1)
+theme_override_colors/font_color = Color(0.847059, 0.596078, 0.254902, 1)
+theme_override_fonts/font = ExtResource("3_8uxxo")
 text = "Host"
 
 [node name="Join" type="Button" parent="MarginContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.603922, 0.411765, 0.141176, 1)
+theme_override_colors/font_color = Color(0.847059, 0.596078, 0.254902, 1)
+theme_override_fonts/font = ExtResource("3_8uxxo")
 text = "Join"
 
 [node name="Credits" type="Button" parent="MarginContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.603922, 0.411765, 0.141176, 1)
+theme_override_colors/font_color = Color(0.847059, 0.596078, 0.254902, 1)
+theme_override_fonts/font = ExtResource("3_8uxxo")
 text = "Credits"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.603922, 0.411765, 0.141176, 1)
+theme_override_colors/font_color = Color(0.847059, 0.596078, 0.254902, 1)
+theme_override_fonts/font = ExtResource("3_8uxxo")
 text = "Quit"
-
-[node name="MarginContainer2" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -490.0
-offset_top = -160.0
-offset_right = -34.0
-offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer2"]
-custom_minimum_size = Vector2(256, 256)
-layout_mode = 2
-texture = ExtResource("2_xllby")
 
 [node name="MarginContainer3" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -87,6 +107,19 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="MarginContainer3"]
+clip_children = 1
 layout_mode = 2
 theme_type_variation = &"Title"
-text = "Multiplayer Example"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_8uxxo")
+text = "Metal Trigger"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer3/Label"]
+layout_mode = 2
+offset_top = -44.0
+offset_right = 707.0
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_8uxxo")
