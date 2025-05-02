@@ -28,10 +28,10 @@ func _physics_process(delta: float) -> void:
 	if move_input.x:
 		pivot.scale.x= sign(move_input.x)
 		
-	if move_input:
-		update_animation_state.rpc(true)
+	if not move_input.is_zero_approx():
+		update_animation_state(true)
 	else:
-		update_animation_state.rpc(false)
+		update_animation_state(false)
 	
 		
 		
