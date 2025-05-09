@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://jq4or3u2ntfe" path="res://scripts/input_sync.gd" id="1_dsi2q"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_x5nd7"]
-properties/0/path = NodePath("Pivot:scale")
+properties/0/path = NodePath("InputSync:move_input")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
