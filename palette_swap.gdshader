@@ -1,33 +1,29 @@
-// https://godotshaders.com/shader/palette-swap-no-recolor-recolor/
 shader_type canvas_item;
 
-
-uniform vec4 original_0: source_color;
-uniform vec4 original_1: source_color;
-uniform vec4 original_2: source_color;
-uniform vec4 original_3: source_color;
-uniform vec4 original_4: source_color;
-uniform vec4 replace_0: source_color;
-uniform vec4 replace_1: source_color;
-uniform vec4 replace_2: source_color;
-uniform vec4 replace_3: source_color;
-uniform vec4 replace_4: source_color;
-
-const float precision = 0.1;
-
-
-vec4 swap_color(vec4 color){
-	vec4 original_colors[5] = vec4[5] (original_0, original_1, original_2, original_3, original_4);
-	vec4 replace_colors[5] = vec4[5] (replace_0, replace_1, replace_2, replace_3, replace_4);
-	for (int i = 0; i < 5; i ++) {
-		if (distance(color, original_colors[i]) <= precision){
-			return replace_colors[i];
-		}
-	}
-	return color;
-}
-
+uniform int mode = 0; // 0: arriba rojo, 1: arriba azul, 2: izquierda rojo, 3: izquierda azul
 
 void fragment() {
-	COLOR = swap_color(texture(TEXTURE, UV));
+    vec4 tex_color = texture(TEXTURE, UV);
+
+    // Colores
+    vec4 red = vec4(1.0, 0.0, 0.0, 0.2);
+    vec4 blue = vec4(0.0, 0.0, 1.0, 0.2); // azul claro y semitransparente
+
+    vec4 color;
+
+    if (mode == 0) {
+        // Arriba rojo, abajo azul
+        color = (UV.y < 0.5) ? mix(tex_color, red, 0.5) : mix(tex_color, blue, 0.5);
+    } else if (mode == 1) {
+        // Arriba azul, abajo rojo
+        color = (UV.y < 0.5) ? mix(tex_color, blue, 0.5) : mix(tex_color, red, 0.5);
+    } else if (mode == 2) {
+        // Izquierda rojo, derecha azul
+        color = (UV.x < 0.5) ? mix(tex_color, red, 0.5) : mix(tex_color, blue, 0.5);
+    } else if (mode == 3) {
+        // Izquierda azul, derecha rojo
+        color = (UV.x < 0.5) ? mix(tex_color, blue, 0.5) : mix(tex_color, red, 0.5);
+    }
+
+    COLOR = color;
 }
