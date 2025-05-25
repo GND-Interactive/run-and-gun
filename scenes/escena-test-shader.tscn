@@ -32,6 +32,8 @@ texture = ExtResource("2_epypp")
 script = ExtResource("3_6rqxa")
 
 [node name="Hitboxdown" type="Area2D" parent="Icon"]
+collision_layer = 8
+collision_mask = 4
 script = ExtResource("4_7uri2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Icon/Hitboxdown"]
@@ -39,6 +41,8 @@ position = Vector2(-1.25, 30.625)
 shape = SubResource("RectangleShape2D_tabqh")
 
 [node name="Hitboxleft" type="Area2D" parent="Icon"]
+collision_layer = 8
+collision_mask = 4
 script = ExtResource("4_7uri2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Icon/Hitboxleft"]
@@ -47,6 +51,8 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_tabqh")
 
 [node name="HitboxRight" type="Area2D" parent="Icon"]
+collision_layer = 8
+collision_mask = 4
 script = ExtResource("4_7uri2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Icon/HitboxRight"]
@@ -55,6 +61,8 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_tabqh")
 
 [node name="Hitboxup" type="Area2D" parent="Icon"]
+collision_layer = 8
+collision_mask = 4
 script = ExtResource("4_7uri2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Icon/Hitboxup"]

@@ -2,6 +2,11 @@ extends Sprite2D
 
 @onready var shader_mat := material as ShaderMaterial
 var mode := 0
+@onready var hitboxdown: hitbox = $Hitboxdown
+@onready var hitboxleft: hitbox = $Hitboxleft
+@onready var hitbox_right: hitbox = $HitboxRight
+@onready var hitboxup: hitbox = $Hitboxup
+var hp = 100
 
 # Función para cambiar el color desde el servidor
 func _ready():
@@ -35,15 +40,25 @@ func _on_timer_timeout():
 		
 func set_hitbox(new_mode: int):
 	if new_mode == 0 or new_mode == 1:
-		pass
+		hitboxup.monitoring = true
+		hitboxdown.monitoring = true
+		hitboxleft.monitoring = false
+		hitbox_right.monitoring = false
 		if new_mode == 0:
-			pass
+			hitboxup.color= Color.RED
+			hitboxdown.color = Color.BLUE
 		else:
-			pass
+			hitboxup.color = Color.BLUE
+			hitboxdown.color = Color.RED
 	else:
-		pass
+		hitboxup.monitoring = false
+		hitboxdown.monitoring = false
+		hitboxleft.monitoring = true
+		hitbox_right.monitoring = true
 		if new_mode==2:
-			pass
+			hitboxleft.color= Color.RED
+			hitbox_right.color= Color.BLUE
 		else:
-			pass
+			hitboxleft.color = Color.BLUE
+			hitbox_right.color= Color.RED
 			

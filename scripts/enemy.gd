@@ -1,5 +1,5 @@
 extends CharacterBody2D
-var color:Color = Color(0,0,1)
+var color:Color = Color.BLUE
 var alive  = true
 var hp = 5
 

@@ -4,11 +4,21 @@ class_name hitbox
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.b_color == color:
-		area.borrar.rpc()
-		take_damage.rpc()
+	if "b_color" in area:
+		Debug.log(area.b_color)
+		if area.b_color == color:
+			area.borrar.rpc()
+			take_damage.rpc()
+		else:
+			area.borrar.rpc()
+	else:
+		pass
 		
 @rpc("call_local")
 func take_damage():
-	pass
+	self.get_parent().hp -=1
+	Debug.log(self.get_parent().hp)
+	print(self.get_parent().hp)
+
+	
 		

@@ -14,6 +14,7 @@ var damage= 1
 @onready var bullet_spawner: Marker2D = $BulletSpawner
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var pivot: Node2D = $Pivot
+@onready var fire_cd: Timer = $FireCD
 
 func _physics_process(delta: float) -> void:
 	
@@ -24,8 +25,9 @@ func _physics_process(delta: float) -> void:
 	velocity.y = move_toward(velocity.y, move_input.y * speed, acceleration * delta)
 	if input_sync.fire:
 		input_sync.fire = false
-		if is_multiplayer_authority():
+		if is_multiplayer_authority() and  fire_cd.is_stopped():
 			fire.rpc_id(1,input_sync.fire_dir)
+			fire_cd.start()
 	if move_input.x:
 		pivot.scale.x= sign(move_input.x)
 		
