@@ -1,0 +1,129 @@
+[gd_scene load_steps=14 format=3 uid="uid://r1mmjem1wdps"]
+
+[ext_resource type="Script" uid="uid://b7jqoomhsbqoj" path="res://scripts/flying_enemy.gd" id="1_g0ct1"]
+[ext_resource type="Texture2D" uid="uid://b0fds1cas0xb1" path="res://assets/enemies/Enemy 3/fly_0.png" id="1_wkeg8"]
+[ext_resource type="Texture2D" uid="uid://c1gu7kbl7100o" path="res://assets/enemies/Enemy 3/fly_1.png" id="2_g0ct1"]
+[ext_resource type="Texture2D" uid="uid://54cp465f50dq" path="res://assets/enemies/Enemy 3/fly_2.png" id="3_cffy3"]
+[ext_resource type="Texture2D" uid="uid://j062ohsebr3r" path="res://assets/enemies/Enemy 3/fly_3.png" id="4_qnu1f"]
+[ext_resource type="Texture2D" uid="uid://g5hpnkqaqtcs" path="res://assets/enemies/Enemy 3/fly_4.png" id="5_qlsb3"]
+[ext_resource type="Texture2D" uid="uid://b20n4vqlqndqk" path="res://assets/enemies/Enemy 3/fly_5.png" id="6_wwh6p"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_so8kc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wkeg8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_g0ct1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cffy3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qnu1f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qlsb3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wwh6p")
+}],
+"loop": true,
+"name": &"Fly",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fxhv2"]
+
+[sub_resource type="Animation" id="Animation_wkeg8"]
+resource_name = "Fly"
+length = 0.42
+loop_mode = 1
+step = 0.07
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:sprite_frames")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("SpriteFrames_so8kc")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Fly"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.14, 0.21, 0.28, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_g0ct1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g0ct1"]
+_data = {
+&"Fly": SubResource("Animation_wkeg8"),
+&"RESET": SubResource("Animation_g0ct1")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_g0ct1"]
+
+[node name="FlyingEnemy" type="Area2D"]
+script = ExtResource("1_g0ct1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_so8kc")
+animation = &"Fly"
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 49)
+scale = Vector2(4, 5)
+shape = SubResource("RectangleShape2D_fxhv2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_g0ct1")
+}
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_g0ct1")
