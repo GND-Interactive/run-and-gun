@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bervrm08asanb"]
+[gd_scene load_steps=11 format=3 uid="uid://bervrm08asanb"]
 
 [ext_resource type="Script" uid="uid://cgxewe8sy2juq" path="res://scenes/main.gd" id="1_w8wmq"]
 [ext_resource type="Texture2D" uid="uid://ey2br6wp0335" path="res://r99327.png" id="3_b6r43"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cjk3ptono37qa" path="res://assets/background/middle.png" id="4_wejd8"]
 [ext_resource type="Texture2D" uid="uid://bm1rlrmwjetky" path="res://assets/background/foreground.png" id="4_wubvj"]
 [ext_resource type="Texture2D" uid="uid://c8novhkjnddnv" path="res://assets/background/back.png" id="6_wejd8"]
+[ext_resource type="PackedScene" uid="uid://ccbingdyfkely" path="res://scenes/levels/enemy-wave-1.tscn" id="9_2ovie"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_urp3g"]
 
@@ -15,7 +16,7 @@
 script = ExtResource("1_w8wmq")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 10.0
 
 [node name="floor" type="Node2D" parent="."]
 visible = false
@@ -152,11 +153,11 @@ script = ExtResource("3_wubvj")
 [node name="Spawn" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="Spawn"]
-position = Vector2(229, 263)
+position = Vector2(229, 352)
 gizmo_extents = 127.1
 
 [node name="Marker2D2" type="Marker2D" parent="Spawn"]
-position = Vector2(361, 515)
+position = Vector2(361, 581)
 gizmo_extents = 127.1
 
 [node name="borders" type="Node2D" parent="."]
@@ -199,3 +200,6 @@ shape = SubResource("RectangleShape2D_urp3g")
 [node name="Sprite2D" type="Sprite2D" parent="Enemies/Enemy-1"]
 position = Vector2(785, 329)
 texture = ExtResource("4_gl321")
+
+[node name="Enemy-wave-1" parent="Enemies/Enemy-1" instance=ExtResource("9_2ovie")]
+position = Vector2(1623, 577)
