@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cj48gmj04kicp"]
 
 [ext_resource type="Script" uid="uid://c6r86t1ot6a1y" path="res://scripts/bullet.gd" id="1_y25gk"]
-[ext_resource type="Texture2D" uid="uid://cccmwe1yaf6pd" path="res://assets/bullet/01.png" id="2_l5glv"]
+[ext_resource type="Texture2D" uid="uid://db4gqww0ob5m7" path="res://assets/bullet/01.png" id="2_l5glv"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_eoqba"]
 properties/0/path = NodePath(".:position")

@@ -1,14 +1,23 @@
-[gd_scene load_steps=11 format=3 uid="uid://bervrm08asanb"]
+[gd_scene load_steps=20 format=3 uid="uid://bervrm08asanb"]
 
 [ext_resource type="Script" uid="uid://cgxewe8sy2juq" path="res://scenes/main.gd" id="1_w8wmq"]
-[ext_resource type="Texture2D" uid="uid://ey2br6wp0335" path="res://r99327.png" id="3_b6r43"]
 [ext_resource type="Script" uid="uid://dc1rf43vo6q8x" path="res://scripts/camera_movement.gd" id="3_wubvj"]
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="4_gl321"]
 [ext_resource type="Script" uid="uid://boqevddxhy35r" path="res://scripts/borders.gd" id="4_ieimj"]
 [ext_resource type="Texture2D" uid="uid://cjk3ptono37qa" path="res://assets/background/middle.png" id="4_wejd8"]
 [ext_resource type="Texture2D" uid="uid://bm1rlrmwjetky" path="res://assets/background/foreground.png" id="4_wubvj"]
+[ext_resource type="FontFile" uid="uid://cmi6201kug2db" path="res://assets/fonts/metalslug-font.ttf" id="6_2ovie"]
 [ext_resource type="Texture2D" uid="uid://c8novhkjnddnv" path="res://assets/background/back.png" id="6_wejd8"]
-[ext_resource type="PackedScene" uid="uid://ccbingdyfkely" path="res://scenes/levels/enemy-wave-1.tscn" id="9_2ovie"]
+[ext_resource type="Texture2D" uid="uid://de1nhtjna8jsv" path="res://assets/ui/w_dark.png" id="7_jxooh"]
+[ext_resource type="Texture2D" uid="uid://b0aliim7qh1x7" path="res://assets/ui/a_key_dark.png" id="8_6gxdu"]
+[ext_resource type="Texture2D" uid="uid://doytvbgotemvd" path="res://assets/ui/s_dark.png" id="9_ixq74"]
+[ext_resource type="Texture2D" uid="uid://ccvpy5y0p488n" path="res://assets/ui/d_dark.png" id="10_oh1hm"]
+[ext_resource type="Texture2D" uid="uid://uw131pybrd5r" path="res://assets/ui/arrow_up_dark.png" id="11_h3m2t"]
+[ext_resource type="Texture2D" uid="uid://bpno8misn06f2" path="res://assets/ui/arrow_left_dark.png" id="12_plvqx"]
+[ext_resource type="Texture2D" uid="uid://bmm1bm5fmbr18" path="res://assets/ui/arrow_right_dark.png" id="13_kwl1m"]
+[ext_resource type="Texture2D" uid="uid://dpeabdkk31qlo" path="res://assets/ui/arrow_down_dark.png" id="14_ql35f"]
+[ext_resource type="PackedScene" uid="uid://cd0jd8wjhjg6x" path="res://scenes/enemies/enemy.tscn" id="17_plvqx"]
+[ext_resource type="PackedScene" uid="uid://540daqtj4vt5" path="res://scenes/enemies/enemy2.tscn" id="18_kwl1m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_urp3g"]
 
@@ -17,21 +26,6 @@ script = ExtResource("1_w8wmq")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
-
-[node name="floor" type="Node2D" parent="."]
-visible = false
-
-[node name="floor-stage-1" type="Sprite2D" parent="floor"]
-position = Vector2(662.68, 398.782)
-scale = Vector2(5.51421, 3.5266)
-skew = 0.44855
-texture = ExtResource("3_b6r43")
-
-[node name="floor-stage-2" type="Sprite2D" parent="floor"]
-position = Vector2(2400, 400)
-scale = Vector2(5.51421, 3.5266)
-skew = 0.44855
-texture = ExtResource("3_b6r43")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 offset = Vector2(37, 49)
@@ -142,6 +136,78 @@ position = Vector2(688, 0)
 texture = ExtResource("4_wubvj")
 centered = false
 
+[node name="UI-Tutorial" type="Node2D" parent="."]
+position = Vector2(169, 95)
+
+[node name="Move" type="Label" parent="UI-Tutorial"]
+offset_left = 454.0
+offset_top = 353.0
+offset_right = 508.0
+offset_bottom = 377.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(1, 0.360784, 0.0117647, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_2ovie")
+theme_override_font_sizes/font_size = 23
+text = "Move"
+
+[node name="WASD" type="Node2D" parent="UI-Tutorial/Move"]
+position = Vector2(13.5, 13.5)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="UI-Tutorial/Move/WASD"]
+modulate = Color(0.742527, 0.311119, 0.244126, 1)
+position = Vector2(29, 48.5)
+texture = ExtResource("7_jxooh")
+
+[node name="Sprite2D2" type="Sprite2D" parent="UI-Tutorial/Move/WASD"]
+modulate = Color(0.741176, 0.309804, 0.243137, 1)
+position = Vector2(-10.5, 90)
+texture = ExtResource("8_6gxdu")
+
+[node name="Sprite2D3" type="Sprite2D" parent="UI-Tutorial/Move/WASD"]
+modulate = Color(0.741176, 0.309804, 0.243137, 1)
+position = Vector2(28.5, 90.5)
+texture = ExtResource("9_ixq74")
+
+[node name="Sprite2D4" type="Sprite2D" parent="UI-Tutorial/Move/WASD"]
+modulate = Color(0.741176, 0.309804, 0.243137, 1)
+position = Vector2(67.5, 91)
+texture = ExtResource("10_oh1hm")
+
+[node name="Shoot" type="Label" parent="UI-Tutorial"]
+offset_left = 698.0
+offset_top = 356.0
+offset_right = 755.0
+offset_bottom = 380.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(1, 0.360784, 0.0117647, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_2ovie")
+theme_override_font_sizes/font_size = 23
+text = "Shoot"
+
+[node name="Arrows" type="Node2D" parent="UI-Tutorial/Shoot"]
+modulate = Color(0.741176, 0.309804, 0.243137, 1)
+position = Vector2(28, 14)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="UI-Tutorial/Shoot/Arrows"]
+position = Vector2(3, 44)
+texture = ExtResource("11_h3m2t")
+
+[node name="Sprite2D2" type="Sprite2D" parent="UI-Tutorial/Shoot/Arrows"]
+position = Vector2(-35, 87)
+texture = ExtResource("12_plvqx")
+
+[node name="Sprite2D3" type="Sprite2D" parent="UI-Tutorial/Shoot/Arrows"]
+position = Vector2(42, 86)
+texture = ExtResource("13_kwl1m")
+
+[node name="Sprite2D4" type="Sprite2D" parent="UI-Tutorial/Shoot/Arrows"]
+position = Vector2(3, 86)
+texture = ExtResource("14_ql35f")
+
 [node name="Players" type="Node2D" parent="."]
 position = Vector2(-2, 2)
 
@@ -201,5 +267,8 @@ shape = SubResource("RectangleShape2D_urp3g")
 position = Vector2(785, 329)
 texture = ExtResource("4_gl321")
 
-[node name="Enemy-wave-1" parent="Enemies/Enemy-1" instance=ExtResource("9_2ovie")]
-position = Vector2(1623, 577)
+[node name="Enemy" parent="Enemies" instance=ExtResource("17_plvqx")]
+position = Vector2(564, 368)
+
+[node name="Enem2" parent="Enemies" instance=ExtResource("18_kwl1m")]
+position = Vector2(554, 589)
