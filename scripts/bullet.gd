@@ -1,8 +1,12 @@
 extends Area2D
+
+class_name Bullet
+
 @export var speed = 800
 @export var direction = Vector2.RIGHT
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @export var b_color = Color.WHITE
+
 func _ready() -> void:
 	sprite_2d.modulate = b_color
 	rotation = direction.angle()

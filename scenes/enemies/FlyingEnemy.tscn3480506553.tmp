@@ -107,8 +107,6 @@ _data = {
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_g0ct1"]
 
 [node name="FlyingEnemy" type="Area2D"]
-collision_layer = 8
-collision_mask = 4
 script = ExtResource("1_g0ct1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -4,20 +4,38 @@ extends Node2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var Enemies: Node2D = $Path2D/PathFollow2D/Node2D
 
-## Esta variable almacena las debilidades de los enemigos
-var debilidades : Array[String] 
+## Ruta de la escena de los enemigos individuales
+const FLYING_ENEMY = preload("res://scenes/enemies/FlyingEnemy.tscn")
 
-# Le pasamos
+## Cantidad de separacion entre enemigos de la oleada
+var separation : float = 200.0
+
 func _ready() -> void:
-	animation_player.play("Move_enemies")
-	set_wave_colors(["red","purple","blue"])
-	
+	# Esta animacion la triggerea el nivel cuando corresponda
+	#animation_player.play("Move_enemies")
+	#create_enemies(3)
+	#await get_tree().process_frame
+	#set_wave_colors(["red","blue","purple"])
+	pass
 
+## Funcion que añade los colores a cada enemigo
+## Los enemigos son creados previamente por @create_enemies
 func set_wave_colors(colores: Array[String]) -> void:
-	debilidades = colores
 	# El enemigo actual al que le estamos agregando un color
 	var i = 0
 	for flyingEnemy in Enemies.get_children():
-		# Obtenemos el sprite para cambiarle el color
-		flyingEnemy.set_color(debilidades[i])
-		i+=1
+		if i < colores.size():
+			flyingEnemy.set_color(colores[i])
+		else:
+			flyingEnemy.set_color()  # Usa el color por defecto
+		i += 1
+
+## Funcion que crea enemigos
+## @number_of_enemies es la cantidad de enemigos que se crean
+func create_enemies(number_of_enemies: int = 3) -> void :
+	for i in range(number_of_enemies):
+		var enemy = FLYING_ENEMY.instantiate()
+		# Posicionarlos separados horizontalmente
+		enemy.position = Vector2( i * separation,0)
+		# Instanciar enemigos en el nodo Enemies
+		Enemies.add_child(enemy)

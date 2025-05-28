@@ -6,6 +6,10 @@ extends Node2D
 @export var player_scene_2= preload("res://scenes/players/Player-2.tscn")
 var player_scenes = [player_scene_1, player_scene_2]
 
+@onready var enemies: Node2D = $Enemies
+
+const ENEMY_WAVE_1 = preload("res://scenes/levels/enemy-wave-1.tscn")
+
 func _ready() -> void:
 	for i in Game.players.size():
 		var player=Game.players[i]
@@ -20,3 +24,18 @@ func _ready() -> void:
 		player_inst.setup(player)
 		print(players)
 		player_inst.global_position= spawn.get_child(i).global_position
+		create_enemy_waves()
+
+
+func create_enemy_waves() -> void:
+	var wave = ENEMY_WAVE_1.instantiate()
+	enemies.add_child(wave)
+	# Posicionar la oleada
+	wave.position = Vector2(750.0,577.0)
+	# Esperar un frame para que la escena termine de instanciar nodos (importante para que funcione `await get_tree().process_frame`)
+	#await get_tree().process_frame()
+	
+	# Llama a los metodos de la oleada
+	wave.create_enemies(2)
+	var colores : Array[String] = ["blue","red"]
+	wave.set_wave_colors(colores)

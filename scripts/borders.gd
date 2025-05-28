@@ -11,7 +11,7 @@ var CHANGE_STAGE_OFFSET: float = 500
 
 # Esta funcion es solo para probar la funcionalidad de mover el limite derecho
 func _ready():
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(30.0).timeout
 	remove_all_enemies()
 	move_right_limit()
 
