@@ -23,6 +23,8 @@ func _process(delta):
 	# Una ves tenemos a ambos jugadores
 	print("players inicializados")
 	move_camera()
+	var string_Debug = "Camera position: %s" %camera.position
+	#Debug.log(string_Debug)
 
 func move_camera():
 	var distance_x = abs(player_1.global_position.x - player_2.global_position.x)

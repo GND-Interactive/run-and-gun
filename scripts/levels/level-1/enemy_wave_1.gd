@@ -11,11 +11,6 @@ const FLYING_ENEMY = preload("res://scenes/enemies/FlyingEnemy.tscn")
 var separation : float = 200.0
 
 func _ready() -> void:
-	# Esta animacion la triggerea el nivel cuando corresponda
-	#animation_player.play("Move_enemies")
-	#create_enemies(3)
-	#await get_tree().process_frame
-	#set_wave_colors(["red","blue","purple"])
 	pass
 
 ## Funcion que añade los colores a cada enemigo
@@ -39,3 +34,7 @@ func create_enemies(number_of_enemies: int = 3) -> void :
 		enemy.position = Vector2( i * separation,0)
 		# Instanciar enemigos en el nodo Enemies
 		Enemies.add_child(enemy)
+		
+## Funcion para iniciar la animacion Move_enemies
+func move_enemies() -> void:
+	animation_player.play("Move_enemies")

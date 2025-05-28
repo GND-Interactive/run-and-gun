@@ -32,14 +32,11 @@ func set_color(color_name: String = "purple") -> void:
 	else:
 		debilidad = debilidades["purple"]  # Valor por defecto
 	sprite.modulate = debilidad
-	print("Seteado el color ", debilidad, " como debilidad")
 
 ## Funcion que maneja las colisiones con las balas
 func _on_area_entered(bullet: Area2D) -> void:
-	Debug.log(bullet.name)
 	if bullet is Bullet && (bullet.b_color == debilidad || debilidad == Color(1,0,1)):
 		if hp == 1 :
-			Debug.log(bullet.get_class())
 			bullet.borrar.rpc()
 			dead.rpc()
 		else:
