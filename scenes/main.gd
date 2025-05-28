@@ -36,6 +36,6 @@ func create_enemy_waves() -> void:
 	#await get_tree().process_frame()
 	
 	# Llama a los metodos de la oleada
-	wave.create_enemies(2)
-	var colores : Array[String] = ["blue","red"]
+	wave.create_enemies(3)
+	var colores : Array[String] = ["blue","red", "purple"]
 	wave.set_wave_colors(colores)
