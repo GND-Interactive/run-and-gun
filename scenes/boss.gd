@@ -7,7 +7,7 @@ extends CharacterBody2D
 var direction : Vector2
 var DEF = 0
  
-var health = 100:
+var health = 10:
 	set(value):
 		health = value
 		progress_bar.value = value

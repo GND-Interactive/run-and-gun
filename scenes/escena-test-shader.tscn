@@ -286,7 +286,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s7yal"]
-radius = 92.567
+radius = 118.033
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xtgkl"]
 radius = 58.5
@@ -422,6 +422,7 @@ script = ExtResource("10_ntbbm")
 script = ExtResource("11_ntbbm")
 
 [node name="LaserBeam" type="Node2D" parent="FiniteStateMachine"]
+visible = false
 script = ExtResource("12_xtgkl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

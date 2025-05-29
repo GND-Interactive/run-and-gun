@@ -18,7 +18,6 @@ func _on_area_entered(area: Area2D) -> void:
 func take_damage():
 	self.get_parent().hp -=1
 	Debug.log(self.get_parent().hp)
-	print(self.get_parent().hp)
 
 	
 		

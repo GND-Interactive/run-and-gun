@@ -195,7 +195,7 @@ shape = SubResource("RectangleShape2D_urp3g")
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="boss" parent="Enemies" instance=ExtResource("8_2ovie")]
-position = Vector2(772, 342)
+position = Vector2(666, 317)
 
 [node name="Label" type="Label" parent="Enemies/boss"]
 offset_left = 110.5
