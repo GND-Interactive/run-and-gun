@@ -1,28 +1,37 @@
-shader_type canvas_item;
 
-uniform int mode = 0; // 0: arriba rojo, 1: arriba azul, 2: izquierda rojo, 3: izquierda azul
+shader_type canvas_item;
+uniform int mode = 0;
 
 void fragment() {
     vec4 tex_color = texture(TEXTURE, UV);
 
     // Colores
     vec4 red = vec4(1.0, 0.0, 0.0, 0.2);
-    vec4 blue = vec4(0.0, 0.0, 1.0, 0.2); // azul claro y semitransparente
+    vec4 blue = vec4(0.0, 0.0, 1.0, 0.2);
 
-    vec4 color;
+    vec4 color = tex_color;
 
     if (mode == 0) {
-        // Arriba rojo, abajo azul
-        color = (UV.y < 0.5) ? mix(tex_color, red, 0.5) : mix(tex_color, blue, 0.5);
+        // Dividir en 20 franjas verticales y alternar colores
+		// izq rojo, der azul
+        int stripe_index = int(UV.x * 20.0); // 0 a 19
+        bool is_even = (stripe_index % 2) == 0;
+        color = mix(tex_color, is_even ? red : blue, 0.5);
     } else if (mode == 1) {
-        // Arriba azul, abajo rojo
-        color = (UV.y < 0.5) ? mix(tex_color, blue, 0.5) : mix(tex_color, red, 0.5);
+        // izq azul, der rojo
+        int stripe_index = int(UV.x * 20.0); // 0 a 19
+        bool is_even = (stripe_index % 2) == 0;
+        color = mix(tex_color, is_even ? blue : red, 0.5);
     } else if (mode == 2) {
-        // Izquierda rojo, derecha azul
-        color = (UV.x < 0.5) ? mix(tex_color, red, 0.5) : mix(tex_color, blue, 0.5);
+        // arriba rojo, abajo azul
+        int stripe_index = int(UV.y * 20.0); // 0 a 19
+        bool is_even = (stripe_index % 2) == 0;
+        color = mix(tex_color, is_even ? red : blue, 0.5);
     } else if (mode == 3) {
-        // Izquierda azul, derecha rojo
-        color = (UV.x < 0.5) ? mix(tex_color, blue, 0.5) : mix(tex_color, red, 0.5);
+        // arriba azul, abajo rojo
+        int stripe_index = int(UV.y * 20.0); // 0 a 19
+        bool is_even = (stripe_index % 2) == 0;
+        color = mix(tex_color, is_even ? blue : red, 0.5);
     }
 
     COLOR = color;

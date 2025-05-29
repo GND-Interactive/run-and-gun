@@ -1,4 +1,4 @@
-extends Sprite2D
+extends CharacterBody2D
 
 @onready var shader_mat := material as ShaderMaterial
 var mode := 0

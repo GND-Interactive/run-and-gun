@@ -1,13 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://bervrm08asanb"]
+[gd_scene load_steps=10 format=3 uid="uid://bervrm08asanb"]
 
 [ext_resource type="Script" uid="uid://cgxewe8sy2juq" path="res://scenes/main.gd" id="1_w8wmq"]
 [ext_resource type="Texture2D" uid="uid://ey2br6wp0335" path="res://r99327.png" id="3_b6r43"]
 [ext_resource type="Script" uid="uid://dc1rf43vo6q8x" path="res://scripts/camera_movement.gd" id="3_wubvj"]
-[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="4_gl321"]
 [ext_resource type="Script" uid="uid://boqevddxhy35r" path="res://scripts/borders.gd" id="4_ieimj"]
-[ext_resource type="Texture2D" uid="uid://bcint1pfhrl85" path="res://assets/background/middle.png" id="4_wejd8"]
-[ext_resource type="Texture2D" uid="uid://codxhb5oo3ftk" path="res://assets/background/foreground.png" id="4_wubvj"]
-[ext_resource type="Texture2D" uid="uid://cik3mfnyy3420" path="res://assets/background/back.png" id="6_wejd8"]
+[ext_resource type="Texture2D" uid="uid://cohkkec2e6qvn" path="res://assets/background/middle.png" id="4_wejd8"]
+[ext_resource type="Texture2D" uid="uid://dx7v6b0ahnrhm" path="res://assets/background/foreground.png" id="4_wubvj"]
+[ext_resource type="Texture2D" uid="uid://djjah8mqwgags" path="res://assets/background/back.png" id="6_wejd8"]
 [ext_resource type="PackedScene" uid="uid://ca78w8xxxqd45" path="res://scenes/escena-test-shader.tscn" id="8_2ovie"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_urp3g"]
@@ -195,11 +194,5 @@ shape = SubResource("RectangleShape2D_urp3g")
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Node2D" parent="Enemies" instance=ExtResource("8_2ovie")]
-position = Vector2(726, 415)
-
-[node name="Enemy-1" type="Node2D" parent="Enemies"]
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemies/Enemy-1"]
-position = Vector2(785, 329)
-texture = ExtResource("4_gl321")
+[node name="boss" parent="Enemies" instance=ExtResource("8_2ovie")]
+position = Vector2(574, 185)

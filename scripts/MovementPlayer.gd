@@ -35,11 +35,6 @@ func _physics_process(delta: float) -> void:
 		update_animation_state(true)
 	else:
 		update_animation_state(false)
-	
-		
-		
-	
-
 	# Movimiento físico
 	move_and_slide()
 
