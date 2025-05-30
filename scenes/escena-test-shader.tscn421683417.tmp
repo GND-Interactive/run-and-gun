@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://ca78w8xxxqd45"]
+
+[ext_resource type="Shader" uid="uid://cwdtdmb0d4mp0" path="res://palette_swap.gdshader" id="1_0e48y"]
+[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_epypp"]
+[ext_resource type="Script" uid="uid://b5gkdfqlbfu5r" path="res://scenes/boss_color.gd" id="3_6rqxa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0hol4"]
+shader = ExtResource("1_0e48y")
+shader_parameter/mode = 0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6rqxa"]
+properties/0/path = NodePath("Icon:self_modulate")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Icon:modulate")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Icon:texture_filter")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0hol4")
+position = Vector2(120, 91)
+texture = ExtResource("2_epypp")
+script = ExtResource("3_6rqxa")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_6rqxa")

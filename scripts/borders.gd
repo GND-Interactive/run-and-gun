@@ -17,11 +17,6 @@ var CHANGE_STAGE_OFFSET: float = 500
 func _ready():
 	pass
 	
-## Elimina todos los enemigos
-func remove_all_enemies():
-	for enemy in enemies.get_children():
-		enemy.queue_free()
-		
 ## Mueve el limite derecho a la siguiente stage
 ## Genera un desplazamiento a la derecha del limite derecho
 func move_right_limit() -> void:
@@ -75,3 +70,4 @@ func _on_timer_timeout() -> void:
 	var posicion_enemigos_2_2 = Vector2(1700,400)
 	main.create_enemy_waves(cantidad_enemigos_2, colores_enemigos_1_2, posicion_enemigos_1_2)
 	main.create_enemy_waves(cantidad_enemigos_2, colores_enemigos_2_2, posicion_enemigos_2_2)
+	pass
