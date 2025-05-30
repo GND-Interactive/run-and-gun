@@ -9,10 +9,19 @@ extends CharacterBody2D
 @onready var hitboxup: hitbox = $Hitboxup
 @onready var fsm = $FiniteStateMachine
 
+@onready var chase: Timer = $Chase
+@onready var state: Timer = $state
+
+
 var hp := 10
 var mode := 0
 var direction := Vector2.ZERO
 var last_sent_position := Vector2.ZERO
+var speed = 700
+var player_chase = false
+var player_shoot = false
+var player = null
+
 
 func _ready():
 	if multiplayer.is_server():
@@ -23,39 +32,30 @@ func _ready():
 		timer.autostart = true
 		add_child(timer)
 		timer.timeout.connect(_on_timer_timeout)
+		chase.connect("timeout", Callable(self,"on_chase_timeout"))
+	chase.start()
+	
 
 	set_physics_process(multiplayer.is_server())
+	
 
 func _process(_delta):
 	if not multiplayer.is_server():
 		return
 
-	var target_player = get_nearest_player()
-	if target_player:
-		direction = target_player.global_position - global_position
-		sprite.flip_h = direction.x < 0
+
 
 func _physics_process(delta):
 	if not multiplayer.is_server():
-		return
-
-	move_towards_player(delta)
-
-func move_towards_player(delta):
-	var player_move = get_nearest_player()
-	if not player_move:
-		return
-
-	var distance = global_position.distance_to(player_move.global_position)
-	if distance > 1:
-		var direction = (player_move.global_position - global_position).normalized()
-		var target_velocity = direction * 100
-		velocity = velocity.lerp(target_velocity, 0.2)
-		move_and_collide(velocity * delta)
-
-		if global_position.distance_to(last_sent_position) > 5:
-			last_sent_position = global_position
-			rpc("sync_position", global_position, sprite.flip_h)
+		pass
+	if player_chase and player:
+		var direction = (player.global_position - global_position).normalized()
+		velocity = direction * speed
+		move_and_slide()
+	else:
+		velocity = Vector2.ZERO
+		
+	
 
 
 @rpc("call_local", "unreliable")
@@ -65,21 +65,18 @@ func sync_position(pos: Vector2, flip: bool):
 	global_position = pos
 	sprite.flip_h = flip
 
+
 func get_nearest_player() -> Node2D:
 	var players_container = get_parent().get_parent().find_child("Players")
 	if not players_container:
 		return null
 
-	var nearest_player
-	var min_distance = INF
+	var players = players_container.get_children()
+	if players.size() == 0:
+		return null
 
-	for player in players_container.get_children():
-		var dist = global_position.distance_to(player.global_position)
-		if dist < min_distance:
-			min_distance = dist
-			nearest_player = player
+	return players[randi() % players.size()]
 
-	return nearest_player
 
 # ---------------------------
 # SALUD Y ESTADOS
@@ -90,11 +87,8 @@ var health := 10:
 		health = value
 		if value <= 0:
 			print("QUE SUCEDE")
-			fsm.change_state("Death")
+			self.queue_free()
 
-@rpc("call_local", "reliable")
-func remote_change_state(state_name: String):
-	fsm.change_state(state_name)
 
 @rpc("any_peer", "reliable")
 func take_damage():
@@ -134,3 +128,30 @@ func set_hitbox(new_mode: int):
 	elif new_mode == 3:
 		hitboxleft.color = Color.BLUE
 		hitbox_right.color = Color.RED
+
+
+@rpc("call_local")
+func change_state():
+	var mode_ = 0
+	var player_ = get_nearest_player()
+	if mode_ == 0:
+		dash(player_)
+@rpc("call_local")
+func dash(player_):
+	player = player_
+	player_chase = true
+	chase.start()
+@rpc("call_local")
+func rayo(player):
+	pass
+@rpc("call_local")
+func _on_chase_timeout() -> void:
+	player_chase = false
+	state.start()
+	
+
+
+func _on_state_timeout() -> void:
+	change_state()
+func win():
+	self.get_parent().get_parent().get_node("WinScreen").win()

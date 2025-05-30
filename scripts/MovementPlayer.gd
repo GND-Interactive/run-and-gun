@@ -15,6 +15,7 @@ var damage= 1
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var pivot: Node2D = $Pivot
 @onready var fire_cd: Timer = $FireCD
+var hp = 5
 
 func _physics_process(delta: float) -> void:
 	
@@ -23,7 +24,7 @@ func _physics_process(delta: float) -> void:
 	
 	velocity.x = move_toward(velocity.x, move_input.x * speed, acceleration * delta)
 	velocity.y = move_toward(velocity.y, move_input.y * speed, acceleration * delta)
-	if input_sync.fire:
+	if input_sync.fire :
 		input_sync.fire = false
 		if is_multiplayer_authority() and  fire_cd.is_stopped():
 			fire.rpc_id(1,input_sync.fire_dir)
@@ -88,3 +89,15 @@ func limit_movement(opponent_position: Vector2, max_distance: float):
 		acceleration = 2000  # Restauramos la aceleración si se mueve hacia el otro jugador
 
 	
+func lose():
+	var players = self.get_parent().get_children()
+	var all_dead = true
+	print(players)
+	for player in players:
+		if player.hp > 0:
+			all_dead  = false
+			break
+	if all_dead:
+		self.get_parent().get_parent().get_node("Losescreen").lose()
+		
+		

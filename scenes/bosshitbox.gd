@@ -17,6 +17,9 @@ func _on_area_entered(area: Area2D) -> void:
 @rpc("call_local")
 func take_damage():
 	self.get_parent().hp -=1
+	if self.get_parent().hp == 0:
+		self.get_parent().win()
+		self.get_parent().queue_free()
 	Debug.log(self.get_parent().hp)
 
 	

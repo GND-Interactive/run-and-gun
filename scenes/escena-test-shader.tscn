@@ -1,17 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://ca78w8xxxqd45"]
+[gd_scene load_steps=20 format=3 uid="uid://ca78w8xxxqd45"]
 
 [ext_resource type="Shader" uid="uid://cwdtdmb0d4mp0" path="res://palette_swap.gdshader" id="1_0e48y"]
-[ext_resource type="Texture2D" uid="uid://5xkrvbu4qge7" path="res://assets/boss/Character_sheet.png" id="2_tabqh"]
+[ext_resource type="Texture2D" uid="uid://uhio674odqh3" path="res://assets/boss/Character_sheet.png" id="2_tabqh"]
 [ext_resource type="Script" uid="uid://b5gkdfqlbfu5r" path="res://scenes/boss_color.gd" id="3_6rqxa"]
 [ext_resource type="Script" uid="uid://sbn7v3w5x7px" path="res://scenes/bosshitbox.gd" id="4_7uri2"]
-[ext_resource type="Texture2D" uid="uid://d1lttetpvdci7" path="res://assets/boss/weapon PNG/Laser_sheet.png" id="5_s7yal"]
-[ext_resource type="Script" uid="uid://c2u5x4gt7q1u3" path="res://scenes/finite_state_machine.gd" id="6_2ia8h"]
-[ext_resource type="Script" uid="uid://du0m8iy6pdbmn" path="res://scenes/idle.gd" id="7_vx8n0"]
-[ext_resource type="Script" uid="uid://6ljfkv0f2t2m" path="res://scenes/follow.gd" id="8_vx8n0"]
-[ext_resource type="Script" uid="uid://c7yb8j45o6725" path="res://scenes/melee_attack.gd" id="9_1jcr8"]
-[ext_resource type="Script" uid="uid://dlris55n5cp3e" path="res://scenes/dash.gd" id="10_ntbbm"]
-[ext_resource type="Script" uid="uid://dq02rb556r0jl" path="res://scenes/death.gd" id="11_ntbbm"]
-[ext_resource type="Script" uid="uid://ktbkdeyjxyc" path="res://scenes/laser_beam.gd" id="12_xtgkl"]
+[ext_resource type="Texture2D" uid="uid://psha8ddos7ug" path="res://assets/boss/weapon PNG/Laser_sheet.png" id="5_s7yal"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xtgkl"]
 shader = ExtResource("1_0e48y")
@@ -30,6 +23,9 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath("Icon:texture_filter")
 properties/2/spawn = true
 properties/2/replication_mode = 1
+properties/3/path = NodePath(".:position")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [sub_resource type="Animation" id="Animation_2afho"]
 length = 0.001
@@ -285,12 +281,12 @@ _data = {
 &"ranged_attack": SubResource("Animation_ntbbm")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_s7yal"]
-radius = 118.033
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xtgkl"]
 radius = 58.5
 height = 117.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tabqh"]
+radius = 66.9216
 
 [node name="boss" type="CharacterBody2D"]
 texture_filter = 1
@@ -320,7 +316,6 @@ script = ExtResource("4_7uri2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxdown"]
 position = Vector2(-3.60693, 14.207)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_tabqh")
 
 [node name="Hitboxup" type="Area2D" parent="."]
@@ -333,7 +328,6 @@ script = ExtResource("4_7uri2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxup"]
 position = Vector2(-2.76771, -17.4606)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_tabqh")
 
 [node name="HitboxRight" type="Area2D" parent="."]
@@ -395,42 +389,26 @@ scale = Vector2(7.06679, 5.50284)
 text = "Boss"
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayerDetection" type="Area2D" parent="."]
-position = Vector2(128.667, 97.6667)
-rotation = 0.130482
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
-shape = SubResource("CircleShape2D_s7yal")
-
-[node name="FiniteStateMachine" type="Node2D" parent="."]
-script = ExtResource("6_2ia8h")
-
-[node name="Idle" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("7_vx8n0")
-
-[node name="Follow" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("8_vx8n0")
-
-[node name="MeleeAttack" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("9_1jcr8")
-
-[node name="Dash" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("10_ntbbm")
-
-[node name="Death" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("11_ntbbm")
-
-[node name="LaserBeam" type="Node2D" parent="FiniteStateMachine"]
-visible = false
-script = ExtResource("12_xtgkl")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(127, 104)
 shape = SubResource("CapsuleShape2D_xtgkl")
+
+[node name="Chase" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="state" type="Timer" parent="."]
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(127, 104.5)
+shape = SubResource("CircleShape2D_tabqh")
 
 [connection signal="area_entered" from="Hitboxdown" to="Hitboxdown" method="_on_area_entered"]
 [connection signal="area_entered" from="Hitboxup" to="Hitboxup" method="_on_area_entered"]
 [connection signal="area_entered" from="HitboxRight" to="HitboxRight" method="_on_area_entered"]
 [connection signal="area_entered" from="Hitboxleft" to="Hitboxleft" method="_on_area_entered"]
-[connection signal="body_entered" from="PlayerDetection" to="FiniteStateMachine/Idle" method="_on_player_detection_body_entered"]
+[connection signal="timeout" from="Chase" to="." method="_on_chase_timeout"]
+[connection signal="timeout" from="state" to="." method="_on_state_timeout"]
