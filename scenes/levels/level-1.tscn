@@ -24,7 +24,8 @@
 script = ExtResource("1_w8wmq")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 20.0
+one_shot = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 offset = Vector2(37, 49)
@@ -267,4 +268,5 @@ shape = SubResource("RectangleShape2D_plvqx")
 
 [node name="Enemies" type="Node2D" parent="."]
 
+[connection signal="timeout" from="Timer" to="borders" method="_on_timer_timeout"]
 [connection signal="body_entered" from="borders/Area2D" to="borders" method="_on_area_2d_body_entered"]
