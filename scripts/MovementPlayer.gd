@@ -60,7 +60,6 @@ func _on_sync()-> void:
 	send_data.rpc(position,velocity)
 @rpc("call_local")
 func fire(direction:Vector2):
-	Debug.log("fire")
 	var bullet_inst = bullet_scene.instantiate()
 	bullet_inst.global_position = bullet_spawner.global_position
 	print(color)

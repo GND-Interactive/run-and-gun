@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://r1mmjem1wdps"]
+[gd_scene load_steps=14 format=3 uid="uid://r1mmjem1wdps"]
 
 [ext_resource type="Script" uid="uid://b7jqoomhsbqoj" path="res://scripts/flying_enemy.gd" id="1_g0ct1"]
 [ext_resource type="Texture2D" uid="uid://b0fds1cas0xb1" path="res://assets/enemies/Enemy 3/fly_0.png" id="1_wkeg8"]
@@ -7,8 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://j062ohsebr3r" path="res://assets/enemies/Enemy 3/fly_3.png" id="4_qnu1f"]
 [ext_resource type="Texture2D" uid="uid://g5hpnkqaqtcs" path="res://assets/enemies/Enemy 3/fly_4.png" id="5_qlsb3"]
 [ext_resource type="Texture2D" uid="uid://b20n4vqlqndqk" path="res://assets/enemies/Enemy 3/fly_5.png" id="6_wwh6p"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qnu1f"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_so8kc"]
 animations = [{
@@ -109,12 +107,9 @@ _data = {
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_g0ct1"]
 
 [node name="FlyingEnemy" type="Area2D"]
-collision_layer = 8
-collision_mask = 4
 script = ExtResource("1_g0ct1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_qnu1f")
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_so8kc")
 animation = &"Fly"

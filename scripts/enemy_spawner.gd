@@ -8,8 +8,6 @@ extends Node2D
 
 var time = 0
 
-
-
 	
 @rpc("call_local")
 func _on_timer_timeout() -> void:
