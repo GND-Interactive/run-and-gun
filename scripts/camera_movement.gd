@@ -16,12 +16,12 @@ func _process(delta):
 		if players.size() >= 2:
 			player_1 = players[0]
 			player_2 = players[1]
-			print("Jugadores encontrados correctamente.")
+			#print("Jugadores encontrados correctamente.")
 		else:
 			return
 			
 	# Una ves tenemos a ambos jugadores
-	print("players inicializados")
+	#print("players inicializados")
 	move_camera()
 
 func move_camera():

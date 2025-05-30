@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://bge5mughwodej"]
+[gd_scene load_steps=31 format=3 uid="uid://bge5mughwodej"]
 
 [ext_resource type="Script" uid="uid://cw06trdvijq7y" path="res://scripts/MovementPlayer.gd" id="1_qmum8"]
 [ext_resource type="SpriteFrames" uid="uid://biaj7jb0gmace" path="res://scenes/players/Player-1-Sprite-Frames.tres" id="2_jjjug"]
 [ext_resource type="PackedScene" uid="uid://bk1l3kpxw5qm7" path="res://scenes/input_sync.tscn" id="3_u1v1j"]
+[ext_resource type="Script" uid="uid://bk7em88k3untq" path="res://scripts/hitplayer.gd" id="4_yto0b"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xit07"]
 radius = 1.28571
@@ -239,6 +240,10 @@ states/Walk/position = Vector2(500, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_delv0"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_8tlq2"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_qqfcm"), "Walk", "Death", SubResource("AnimationNodeStateMachineTransition_vnxbj"), "Idle", "Hit", SubResource("AnimationNodeStateMachineTransition_amv45"), "Walk", "Hit", SubResource("AnimationNodeStateMachineTransition_cpmc8"), "Walk", "Roll", SubResource("AnimationNodeStateMachineTransition_sexqa"), "Hit", "Idle", SubResource("AnimationNodeStateMachineTransition_gchrc"), "Roll", "Idle", SubResource("AnimationNodeStateMachineTransition_3u78i"), "Idle", "Roll", SubResource("AnimationNodeStateMachineTransition_8v1xs"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_xit07")]
 graph_offset = Vector2(-108, -57.7243)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dpsk5"]
+radius = 49.0
+height = 122.0
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_qmum8")
 
@@ -280,3 +285,22 @@ scale = Vector2(0.12, 0.12)
 sprite_frames = ExtResource("2_jjjug")
 animation = &"Idle"
 frame = 1
+
+[node name="FireCD" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="Hitplayer" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 64
+script = ExtResource("4_yto0b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitplayer"]
+position = Vector2(-3, 56)
+shape = SubResource("CapsuleShape2D_dpsk5")
+
+[node name="Invulnerability" type="Timer" parent="Hitplayer"]
+wait_time = 1.5
+
+[connection signal="area_entered" from="Hitplayer" to="Hitplayer" method="_on_area_entered"]

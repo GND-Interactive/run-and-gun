@@ -1,13 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://bervrm08asanb"]
+[gd_scene load_steps=12 format=3 uid="uid://bervrm08asanb"]
 
 [ext_resource type="Script" uid="uid://cgxewe8sy2juq" path="res://scenes/main.gd" id="1_w8wmq"]
 [ext_resource type="Texture2D" uid="uid://ey2br6wp0335" path="res://r99327.png" id="3_b6r43"]
 [ext_resource type="Script" uid="uid://dc1rf43vo6q8x" path="res://scripts/camera_movement.gd" id="3_wubvj"]
-[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="4_gl321"]
 [ext_resource type="Script" uid="uid://boqevddxhy35r" path="res://scripts/borders.gd" id="4_ieimj"]
-[ext_resource type="Texture2D" uid="uid://cjk3ptono37qa" path="res://assets/background/middle.png" id="4_wejd8"]
-[ext_resource type="Texture2D" uid="uid://bm1rlrmwjetky" path="res://assets/background/foreground.png" id="4_wubvj"]
-[ext_resource type="Texture2D" uid="uid://c8novhkjnddnv" path="res://assets/background/back.png" id="6_wejd8"]
+[ext_resource type="Texture2D" uid="uid://cohkkec2e6qvn" path="res://assets/background/middle.png" id="4_wejd8"]
+[ext_resource type="Texture2D" uid="uid://dx7v6b0ahnrhm" path="res://assets/background/foreground.png" id="4_wubvj"]
+[ext_resource type="Texture2D" uid="uid://djjah8mqwgags" path="res://assets/background/back.png" id="6_wejd8"]
+[ext_resource type="PackedScene" uid="uid://ca78w8xxxqd45" path="res://scenes/escena-test-shader.tscn" id="8_2ovie"]
+[ext_resource type="PackedScene" uid="uid://bxh21c6qx4vuj" path="res://scenes/levels/WinScreen.tscn" id="9_2ovie"]
+[ext_resource type="PackedScene" uid="uid://bxoewdrac1lku" path="res://ui/Losescreen.tscn" id="10_ht1ge"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_urp3g"]
 
@@ -194,8 +196,28 @@ shape = SubResource("RectangleShape2D_urp3g")
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Enemy-1" type="Node2D" parent="Enemies"]
+[node name="boss" parent="Enemies" instance=ExtResource("8_2ovie")]
+position = Vector2(666, 317)
 
-[node name="Sprite2D" type="Sprite2D" parent="Enemies/Enemy-1"]
-position = Vector2(785, 329)
-texture = ExtResource("4_gl321")
+[node name="Label" type="Label" parent="Enemies/boss"]
+offset_left = 110.5
+offset_top = 19.5
+offset_right = 150.5
+offset_bottom = 42.5
+text = "Boss"
+
+[node name="WinScreen" parent="." instance=ExtResource("9_2ovie")]
+visible = false
+offset_left = 463.0
+offset_top = 337.0
+offset_right = 463.0
+offset_bottom = 337.0
+scale = Vector2(2.30576, 3.14308)
+
+[node name="Losescreen" parent="." instance=ExtResource("10_ht1ge")]
+visible = false
+offset_left = 469.0
+offset_top = 344.0
+offset_right = 469.0
+offset_bottom = 344.0
+scale = Vector2(1.40592, 2.67974)

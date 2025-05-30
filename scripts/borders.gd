@@ -12,7 +12,7 @@ var CHANGE_STAGE_OFFSET: float = 500
 # Esta funcion es solo para probar la funcionalidad de mover el limite derecho
 func _ready():
 	await get_tree().create_timer(5.0).timeout
-	remove_all_enemies()
+	#remove_all_enemies()
 	move_right_limit()
 
 #Elimina todos los enemigos
@@ -35,4 +35,5 @@ func get_alive_enemies_count() -> int:
 	
 
 func _process(delta: float) -> void:
-	print("Enemigos vivos: ", get_alive_enemies_count())
+	#print("Enemigos vivos: ", get_alive_enemies_count())
+	pass

@@ -9,14 +9,11 @@ var player_scenes = [player_scene_1, player_scene_2]
 func _ready() -> void:
 	for i in Game.players.size():
 		var player=Game.players[i]
-		print(player_scenes)
 		var player_inst= player_scenes[i].instantiate()
 		if i == 0:
-			player_inst.color = Color(0,0,1)
+			player_inst.color = Color.BLUE
 		else:
-			player_inst.color = Color(1,0,0)
-		print(player_inst.color)
+			player_inst.color = Color.RED
 		players.add_child(player_inst)
 		player_inst.setup(player)
-		print(players)
 		player_inst.global_position= spawn.get_child(i).global_position
