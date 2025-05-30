@@ -151,22 +151,6 @@ position = Vector2(680, 410)
 limit_left = 90
 script = ExtResource("3_wubvj")
 
-[node name="WinScreen" parent="Camera2D" instance=ExtResource("9_2ovie")]
-visible = false
-offset_left = -217.0
-offset_top = -73.0
-offset_right = -217.0
-offset_bottom = -73.0
-scale = Vector2(2.30576, 3.14308)
-
-[node name="Losescreen" parent="Camera2D" instance=ExtResource("10_ht1ge")]
-visible = false
-offset_left = -211.0
-offset_top = -66.0
-offset_right = -211.0
-offset_bottom = -66.0
-scale = Vector2(1.40592, 2.67974)
-
 [node name="Spawn" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="Spawn"]
@@ -221,3 +205,19 @@ offset_top = 19.5
 offset_right = 150.5
 offset_bottom = 42.5
 text = "Boss"
+
+[node name="WinScreen" parent="." instance=ExtResource("9_2ovie")]
+visible = false
+offset_left = 463.0
+offset_top = 337.0
+offset_right = 463.0
+offset_bottom = 337.0
+scale = Vector2(2.30576, 3.14308)
+
+[node name="Losescreen" parent="." instance=ExtResource("10_ht1ge")]
+visible = false
+offset_left = 469.0
+offset_top = 344.0
+offset_right = 469.0
+offset_bottom = 344.0
+scale = Vector2(1.40592, 2.67974)
