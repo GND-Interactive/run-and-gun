@@ -135,3 +135,4 @@ libraries = {
 replication_config = SubResource("SceneReplicationConfig_g0ct1")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

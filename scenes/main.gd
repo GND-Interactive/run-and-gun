@@ -9,6 +9,8 @@ var player_scenes = [player_scene_1, player_scene_2]
 
 @onready var enemies: Node2D = $Enemies
 
+const BOSS = preload("res://scenes/boss.tscn")
+
 const ENEMY_WAVE_1 = preload("res://scenes/levels/enemy-wave-1.tscn")
 
 func _ready() -> void:
@@ -22,7 +24,7 @@ func _ready() -> void:
 		players.add_child(player_inst)
 		player_inst.setup(player)
 		player_inst.global_position= spawn.get_child(i).global_position
-
+	
 
 ## Comprobamos si movemos los enemigos
 func _process(delta: float) -> void:

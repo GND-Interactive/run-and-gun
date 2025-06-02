@@ -1,5 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bervrm08asanb"]
-
+[gd_scene load_steps=20 format=3 uid="uid://bervrm08asanb"]
 
 [ext_resource type="Script" uid="uid://cgxewe8sy2juq" path="res://scenes/main.gd" id="1_w8wmq"]
 [ext_resource type="Script" uid="uid://dc1rf43vo6q8x" path="res://scripts/camera_movement.gd" id="3_wubvj"]
@@ -10,16 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://c8novhkjnddnv" path="res://assets/background/back.png" id="6_wejd8"]
 [ext_resource type="Texture2D" uid="uid://de1nhtjna8jsv" path="res://assets/ui/w_dark.png" id="7_jxooh"]
 [ext_resource type="Texture2D" uid="uid://b0aliim7qh1x7" path="res://assets/ui/a_key_dark.png" id="8_6gxdu"]
+[ext_resource type="PackedScene" uid="uid://bxh21c6qx4vuj" path="res://scenes/levels/WinScreen.tscn" id="9_2ovie"]
 [ext_resource type="Texture2D" uid="uid://doytvbgotemvd" path="res://assets/ui/s_dark.png" id="9_ixq74"]
+[ext_resource type="PackedScene" uid="uid://bxoewdrac1lku" path="res://ui/Losescreen.tscn" id="10_ht1ge"]
 [ext_resource type="Texture2D" uid="uid://ccvpy5y0p488n" path="res://assets/ui/d_dark.png" id="10_oh1hm"]
 [ext_resource type="Texture2D" uid="uid://uw131pybrd5r" path="res://assets/ui/arrow_up_dark.png" id="11_h3m2t"]
 [ext_resource type="Texture2D" uid="uid://bpno8misn06f2" path="res://assets/ui/arrow_left_dark.png" id="12_plvqx"]
 [ext_resource type="Texture2D" uid="uid://bmm1bm5fmbr18" path="res://assets/ui/arrow_right_dark.png" id="13_kwl1m"]
 [ext_resource type="Texture2D" uid="uid://dpeabdkk31qlo" path="res://assets/ui/arrow_down_dark.png" id="14_ql35f"]
-[ext_resource type="PackedScene" uid="uid://ca78w8xxxqd45" path="res://scenes/escena-test-shader.tscn" id="8_2ovie"]
-[ext_resource type="PackedScene" uid="uid://bxh21c6qx4vuj" path="res://scenes/levels/WinScreen.tscn" id="9_2ovie"]
-[ext_resource type="PackedScene" uid="uid://bxoewdrac1lku" path="res://ui/Losescreen.tscn" id="10_ht1ge"]
-
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_urp3g"]
 
@@ -30,6 +27,9 @@ script = ExtResource("1_w8wmq")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 20.0
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
 one_shot = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -221,6 +221,18 @@ position = Vector2(680, 410)
 limit_left = 90
 script = ExtResource("3_wubvj")
 
+[node name="WinScreen" parent="Camera2D" instance=ExtResource("9_2ovie")]
+visible = false
+scale = Vector2(2.30576, 3.14308)
+
+[node name="Losescreen" parent="Camera2D" instance=ExtResource("10_ht1ge")]
+visible = false
+offset_left = -45.0
+offset_top = -74.0
+offset_right = -45.0
+offset_bottom = -74.0
+scale = Vector2(1.40592, 2.67974)
+
 [node name="Spawn" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="Spawn"]
@@ -266,7 +278,6 @@ shape = SubResource("RectangleShape2D_urp3g")
 
 [node name="Area2D" type="Area2D" parent="borders"]
 
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="borders/Area2D"]
 position = Vector2(1455, 529)
 scale = Vector2(3, 25)
@@ -274,30 +285,9 @@ shape = SubResource("RectangleShape2D_plvqx")
 
 [node name="Enemies" type="Node2D" parent="."]
 
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(2362, 471)
+
 [connection signal="timeout" from="Timer" to="borders" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="borders" method="_on_timer2_2_timeout"]
 [connection signal="body_entered" from="borders/Area2D" to="borders" method="_on_area_2d_body_entered"]
-[node name="boss" parent="Enemies" instance=ExtResource("8_2ovie")]
-position = Vector2(666, 317)
-
-[node name="Label" type="Label" parent="Enemies/boss"]
-offset_left = 110.5
-offset_top = 19.5
-offset_right = 150.5
-offset_bottom = 42.5
-text = "Boss"
-
-[node name="WinScreen" parent="." instance=ExtResource("9_2ovie")]
-visible = false
-offset_left = 463.0
-offset_top = 337.0
-offset_right = 463.0
-offset_bottom = 337.0
-scale = Vector2(2.30576, 3.14308)
-
-[node name="Losescreen" parent="." instance=ExtResource("10_ht1ge")]
-visible = false
-offset_left = 469.0
-offset_top = 344.0
-offset_right = 469.0
-offset_bottom = 344.0
-scale = Vector2(1.40592, 2.67974)
