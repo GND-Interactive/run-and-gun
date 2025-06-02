@@ -154,4 +154,4 @@ func _on_chase_timeout() -> void:
 func _on_state_timeout() -> void:
 	change_state()
 func win():
-	self.get_parent().get_parent().get_node("WinScreen").win()
+	self.get_node("../../Camera2D/WinScreen").win()

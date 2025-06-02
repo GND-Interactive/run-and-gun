@@ -16,6 +16,7 @@ var damage= 1
 @onready var pivot: Node2D = $Pivot
 @onready var fire_cd: Timer = $FireCD
 var hp = 5
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _physics_process(delta: float) -> void:
 	
@@ -28,6 +29,7 @@ func _physics_process(delta: float) -> void:
 		input_sync.fire = false
 		if is_multiplayer_authority() and  fire_cd.is_stopped():
 			fire.rpc_id(1,input_sync.fire_dir)
+			audio_stream_player_2d.play()
 			fire_cd.start()
 	if move_input.x:
 		pivot.scale.x= sign(move_input.x)
@@ -97,6 +99,6 @@ func lose():
 			all_dead  = false
 			break
 	if all_dead:
-		self.get_parent().get_parent().get_node("Losescreen").lose()
+		self.get_node("../../Camera2D/Losescreen").win()
 		
 		

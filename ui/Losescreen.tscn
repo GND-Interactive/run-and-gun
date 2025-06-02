@@ -1,24 +1,42 @@
 [gd_scene load_steps=3 format=3 uid="uid://bxoewdrac1lku"]
 
 [ext_resource type="Script" uid="uid://c5no8w8s7q55k" path="res://scripts/losescreen.gd" id="1_tkoly"]
-[ext_resource type="FontFile" uid="uid://bafiwycn8vvi8" path="res://assets/fonts/metalslug-font.ttf" id="2_40yym"]
+[ext_resource type="FontFile" uid="uid://cmi6201kug2db" path="res://assets/fonts/metalslug-font.ttf" id="2_40yym"]
 
 [node name="Losescreen" type="Control"]
 process_mode = 3
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_tkoly")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 272.0
-offset_bottom = 198.0
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = -25.5
+offset_right = 33.5
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="Label2" type="Label" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.603922, 0.411765, 0.141176, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -26,7 +44,7 @@ theme_override_fonts/font = ExtResource("2_40yym")
 text = "You Lose"
 horizontal_alignment = 1
 
-[node name="Quit" type="Button" parent="VBoxContainer"]
+[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.603922, 0.411765, 0.141176, 1)
 theme_override_colors/font_color = Color(0.847059, 0.596078, 0.254902, 1)

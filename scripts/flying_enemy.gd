@@ -42,8 +42,12 @@ func _on_area_entered(bullet: Area2D) -> void:
 		else:
 			hp -= 1
 			bullet.borrar.rpc() # Se elimina igual la bala para no tener penetracion de enemigos
-			
 	
 @rpc("call_local")
 func dead():
 	self.queue_free()
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is CharacterBody2D:
+		body.take_damage()

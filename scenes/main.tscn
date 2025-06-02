@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c8c65g2em41xq" path="res://scenes/EnemySpawner.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://cd0jd8wjhjg6x" path="res://scenes/enemies/enemy.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://540daqtj4vt5" path="res://scenes/enemies/enemy2.tscn" id="5_tbgi4"]
-[ext_resource type="PackedScene" uid="uid://ca78w8xxxqd45" path="res://scenes/escena-test-shader.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://ca78w8xxxqd45" path="res://scenes/boss.tscn" id="6_tefeu"]
 
 [node name="Main" type="Node2D"]
 position = Vector2(-1, -1)
