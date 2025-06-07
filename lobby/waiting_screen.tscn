@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://byny6bp0olu78"]
+[gd_scene load_steps=7 format=3 uid="uid://byny6bp0olu78"]
 
 [ext_resource type="PackedScene" uid="uid://cgsspji18smle" path="res://lobby/lobby_screen.tscn" id="1_1g6tu"]
 [ext_resource type="Script" uid="uid://d1urh7pr0l6lh" path="res://lobby/waiting_screen.gd" id="2_a2sqk"]
 [ext_resource type="PackedScene" uid="uid://iobnvr8f3tkm" path="res://lobby/lobby_player.tscn" id="2_wjc1o"]
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="3_0nkhr"]
 [ext_resource type="Texture2D" uid="uid://d0hto4uisjnyu" path="res://assets/img/Metal-Trigger.png" id="3_ssaso"]
+[ext_resource type="Script" uid="uid://dn134u2gvivm1" path="res://lobby/role_button.gd" id="6_iaq1a"]
 
 [node name="WaitingScreen" instance=ExtResource("1_1g6tu")]
 script = ExtResource("2_a2sqk")
@@ -93,7 +94,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("3_0nkhr")
-stretch_mode = 2
+stretch_mode = 1
 
 [node name="PlayerName" type="Label" parent="MarginContainer2/VBoxContainer/MarginContainer/Control/MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer2/Panel_MarginContainer2_VBoxContainer_MarginContainer_Panel_MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer#MarginContainer/VBoxContainer" index="1"]
 unique_name_in_owner = true
@@ -106,6 +107,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 text = "Role?"
+script = ExtResource("6_iaq1a")
 
 [node name="Control" type="Control" parent="MarginContainer2/VBoxContainer/MarginContainer/Control/MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer2/Panel_MarginContainer2_VBoxContainer_MarginContainer_Panel_MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer#MarginContainer/VBoxContainer/RoleButton" index="0"]
 layout_mode = 1

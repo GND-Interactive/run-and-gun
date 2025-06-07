@@ -20,7 +20,7 @@ static func get_role_name(role: Role) -> String:
 		Role.ROLE_A:
 			return "Hombre Azul"
 		Role.ROLE_B:
-			return "Mujer Rojo"
+			return "Mujer Roja"
 	return "Unknown"
 
 
