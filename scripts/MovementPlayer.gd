@@ -1,4 +1,5 @@
 extends CharacterBody2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @onready var input_sync: input_sync = $InputSync
 @onready var label: Label = $Label
@@ -15,7 +16,7 @@ var damage= 1
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var pivot: Node2D = $Pivot
 @onready var fire_cd: Timer = $FireCD
-var hp = 5
+@export var hp = 2
 
 func _physics_process(delta: float) -> void:
 	
@@ -60,7 +61,6 @@ func _on_sync()-> void:
 	send_data.rpc(position,velocity)
 @rpc("call_local")
 func fire(direction:Vector2):
-	Debug.log("fire")
 	var bullet_inst = bullet_scene.instantiate()
 	bullet_inst.global_position = bullet_spawner.global_position
 	print(color)

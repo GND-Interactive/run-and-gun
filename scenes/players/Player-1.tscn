@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bge5mughwodej"]
+[gd_scene load_steps=32 format=3 uid="uid://bge5mughwodej"]
 
 [ext_resource type="Script" uid="uid://cw06trdvijq7y" path="res://scripts/MovementPlayer.gd" id="1_qmum8"]
 [ext_resource type="SpriteFrames" uid="uid://biaj7jb0gmace" path="res://scenes/players/Player-1-Sprite-Frames.tres" id="2_jjjug"]
@@ -244,6 +244,11 @@ graph_offset = Vector2(-108, -57.7243)
 radius = 49.0
 height = 122.0
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_yto0b"]
+properties/0/path = NodePath(".:hp")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_qmum8")
 
@@ -302,5 +307,8 @@ shape = SubResource("CapsuleShape2D_dpsk5")
 
 [node name="Invulnerability" type="Timer" parent="Hitplayer"]
 wait_time = 1.5
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_yto0b")
 
 [connection signal="area_entered" from="Hitplayer" to="Hitplayer" method="_on_area_entered"]

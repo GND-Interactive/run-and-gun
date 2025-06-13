@@ -26,6 +26,21 @@ properties/2/replication_mode = 1
 properties/3/path = NodePath(".:position")
 properties/3/spawn = true
 properties/3/replication_mode = 1
+properties/4/path = NodePath(".:hp")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("Hitboxdown:color")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("Hitboxup:color")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("HitboxRight:color")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath("Hitboxleft:color")
+properties/8/spawn = true
+properties/8/replication_mode = 1
 
 [sub_resource type="Animation" id="Animation_2afho"]
 length = 0.001
@@ -301,7 +316,7 @@ script = ExtResource("3_6rqxa")
 
 [node name="Icon" type="Sprite2D" parent="."]
 use_parent_material = true
-position = Vector2(12, 10.3333)
+position = Vector2(-113.5, -84)
 scale = Vector2(2.33334, 1.84333)
 texture = ExtResource("2_tabqh")
 centered = false
@@ -310,9 +325,8 @@ vframes = 10
 frame = 10
 
 [node name="Hitboxdown" type="Area2D" parent="."]
-visible = false
-position = Vector2(131, 101.5)
-scale = Vector2(1.81137, 1.46741)
+position = Vector2(6.00002, 3.5)
+scale = Vector2(2.07153, 1.51679)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("4_7uri2")
@@ -322,9 +336,8 @@ position = Vector2(-3.60693, 14.207)
 shape = SubResource("RectangleShape2D_tabqh")
 
 [node name="Hitboxup" type="Area2D" parent="."]
-visible = false
-position = Vector2(129.5, 105)
-scale = Vector2(1.80655, 1.45927)
+position = Vector2(4.50002, 6.99999)
+scale = Vector2(2.06602, 1.50837)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("4_7uri2")
@@ -334,9 +347,8 @@ position = Vector2(-2.76771, -17.4606)
 shape = SubResource("RectangleShape2D_tabqh")
 
 [node name="HitboxRight" type="Area2D" parent="."]
-visible = false
-position = Vector2(134, 103.5)
-scale = Vector2(1.66532, 1.37846)
+position = Vector2(9, 5.49999)
+scale = Vector2(1.90451, 1.42484)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("4_7uri2")
@@ -347,9 +359,8 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_tabqh")
 
 [node name="Hitboxleft" type="Area2D" parent="."]
-visible = false
-position = Vector2(133, 107)
-scale = Vector2(1.87518, 1.38411)
+position = Vector2(8.00002, 9)
+scale = Vector2(2.14451, 1.43068)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("4_7uri2")
@@ -363,7 +374,7 @@ shape = SubResource("RectangleShape2D_tabqh")
 replication_config = SubResource("SceneReplicationConfig_6rqxa")
 
 [node name="Pivot" type="Node2D" parent="."]
-position = Vector2(130.333, 66.6667)
+position = Vector2(2.83299, -34.5)
 rotation = -0.154937
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
@@ -381,20 +392,23 @@ libraries = {
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(127, 104)
+position = Vector2(-0.5, 2.8333)
 shape = SubResource("CapsuleShape2D_xtgkl")
 
 [node name="Chase" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 1.3
 
 [node name="state" type="Timer" parent="."]
 
 [node name="Hurtbox" type="Area2D" parent="."]
+position = Vector2(3.5, 4.49999)
+scale = Vector2(1.14363, 1.03365)
 collision_layer = 64
 collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(127, 104.5)
+visible = false
+position = Vector2(-0.5, 3.3333)
 shape = SubResource("CircleShape2D_tabqh")
 
 [connection signal="area_entered" from="Hitboxdown" to="Hitboxdown" method="_on_area_entered"]

@@ -13,7 +13,7 @@ extends CharacterBody2D
 @onready var state: Timer = $state
 
 
-var hp := 10
+@export var hp := 1
 var mode := 0
 var direction := Vector2.ZERO
 var last_sent_position := Vector2.ZERO
@@ -51,7 +51,7 @@ func _physics_process(delta):
 	if player_chase and player:
 		var direction = (player.global_position - global_position).normalized()
 		velocity = direction * speed
-		move_and_slide()
+		move_and_collide(delta*velocity)
 	else:
 		velocity = Vector2.ZERO
 		
@@ -78,22 +78,6 @@ func get_nearest_player() -> Node2D:
 	return players[randi() % players.size()]
 
 
-# ---------------------------
-# SALUD Y ESTADOS
-# ---------------------------
-
-var health := 10:
-	set(value):
-		health = value
-		if value <= 0:
-			print("QUE SUCEDE")
-			self.queue_free()
-
-
-@rpc("any_peer", "reliable")
-func take_damage():
-	if multiplayer.is_server():
-		health -= 1
 
 # ---------------------------
 # COLOR / MODOS
@@ -111,23 +95,30 @@ func _on_timer_timeout():
 		rpc("set_mode", new_mode)
 
 func set_hitbox(new_mode: int):
-	hitboxup.monitoring = (new_mode == 0 or new_mode == 1)
-	hitboxdown.monitoring = (new_mode == 0 or new_mode == 1)
-	hitboxleft.monitoring = (new_mode == 2 or new_mode == 3)
-	hitbox_right.monitoring = (new_mode == 2 or new_mode == 3)
-
-	if new_mode == 0:
-		hitboxup.color = Color.RED
-		hitboxdown.color = Color.BLUE
-	elif new_mode == 1:
-		hitboxup.color = Color.BLUE
-		hitboxdown.color = Color.RED
-	elif new_mode == 2:
-		hitboxleft.color = Color.RED
-		hitbox_right.color = Color.BLUE
-	elif new_mode == 3:
-		hitboxleft.color = Color.BLUE
-		hitbox_right.color = Color.RED
+	if new_mode == 0 or new_mode == 1:
+		hitboxup.monitoring = false
+		hitboxdown.monitoring = false
+		hitboxleft.monitoring = true
+		hitbox_right.monitoring = true
+		print(hitboxdown.monitoring)
+		if new_mode == 0:
+			hitboxleft.color= Color.RED
+			hitbox_right.color = Color.BLUE
+		else:
+			hitboxleft.color = Color.BLUE
+			hitbox_right.color = Color.RED
+	else:
+		hitboxup.monitoring = true
+		hitboxdown.monitoring = true
+		hitboxleft.monitoring = false
+		hitbox_right.monitoring = false
+		print(hitboxdown.monitoring)
+		if new_mode==2:
+			hitboxup.color= Color.RED
+			hitboxdown.color= Color.BLUE
+		else:
+			hitboxup.color = Color.BLUE
+			hitboxdown.color= Color.RED
 
 
 @rpc("call_local")
