@@ -41,7 +41,7 @@ func _ready() -> void:
 		var role = Game.get_current_player().role
 		role_button.text = Statics.get_role_name(role)
 		if role == Statics.Role.NONE:
-			role_button.text = "Role?"
+			role_button.text = "Select Role"
 
 
 func _process(delta: float) -> void:
