@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://vjgqvhmm7vnw"]
+
+[ext_resource type="Script" uid="uid://diwi00fdex0lo" path="res://scripts/ui/health_bar_player.gd" id="1_dbklo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbb3k"]
+bg_color = Color(0.389287, 0.389287, 0.389287, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_dbklo"]
+colors = PackedColorArray(0.952941, 0, 0, 1, 0.87451, 0.917647, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rlx84"]
+gradient = SubResource("Gradient_dbklo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rbb3k"]
+texture = SubResource("GradientTexture2D_rlx84")
+
+[sub_resource type="Gradient" id="Gradient_rlx84"]
+offsets = PackedFloat32Array(0.3125, 1)
+colors = PackedColorArray(0, 1.15514e-06, 0.911553, 1, 0.52876, 0.68171, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rbb3k"]
+gradient = SubResource("Gradient_rlx84")
+metadata/_snap_enabled = true
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2st27"]
+texture = SubResource("GradientTexture2D_rbb3k")
+
+[node name="HealthBarPlayer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_dbklo")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+z_index = 1
+layout_mode = 1
+offset_right = 300.0
+offset_bottom = 50.0
+theme_override_styles/background = SubResource("StyleBoxFlat_rbb3k")
+theme_override_styles/fill = SubResource("StyleBoxTexture_rbb3k")
+max_value = 5.0
+step = 1.0
+value = 5.0
+
+[node name="ProgressBar2" type="ProgressBar" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_rbb3k")
+theme_override_styles/fill = SubResource("StyleBoxTexture_2st27")
+max_value = 5.0
+step = 1.0
+value = 5.0
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
