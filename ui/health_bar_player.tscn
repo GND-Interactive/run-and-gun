@@ -44,13 +44,25 @@ script = ExtResource("1_dbklo")
 [node name="ProgressBar" type="ProgressBar" parent="."]
 z_index = 1
 layout_mode = 1
-offset_right = 300.0
-offset_bottom = 50.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 310.0
+offset_bottom = 60.0
 theme_override_styles/background = SubResource("StyleBoxFlat_rbb3k")
 theme_override_styles/fill = SubResource("StyleBoxTexture_rbb3k")
 max_value = 5.0
 step = 1.0
 value = 5.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="ProgressBar"]
+modulate = Color(0.999508, 0.24049, 5.46765e-05, 1)
+layout_mode = 1
+offset_top = 61.0
+offset_right = 88.0
+offset_bottom = 93.0
+theme_override_font_sizes/font_size = 32
+text = "HP = 5"
 
 [node name="ProgressBar2" type="ProgressBar" parent="."]
 z_index = 1
@@ -58,14 +70,30 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -300.0
-offset_bottom = 50.0
+offset_left = -310.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 60.0
 grow_horizontal = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_rbb3k")
 theme_override_styles/fill = SubResource("StyleBoxTexture_2st27")
 max_value = 5.0
 step = 1.0
 value = 5.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="ProgressBar2"]
+modulate = Color(0.150753, 0.385058, 1, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -88.0
+offset_top = 61.0
+offset_bottom = 93.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "HP = 5"
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
