@@ -72,4 +72,21 @@ process_callback = 0
 wait_time = 2.0
 autostart = true
 
+[node name="Label" type="Label" parent="."]
+modulate = Color(0.916955, 0.315685, 3.85046e-07, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.5
+offset_right = 49.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 56
+text = "120"
+
+[node name="Timer2" type="Timer" parent="."]
+autostart = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

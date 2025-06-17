@@ -8,10 +8,11 @@ extends Control
 @onready var progress_bar_1: ProgressBar = $ProgressBar
 @onready var progress_bar_2: ProgressBar = $ProgressBar2
 @onready var damage_timer: Timer = $Timer
+@onready var timer_2: Timer = $Timer2
+@onready var label: Label = $Label
 
 var vida = 5
 var max_vida = 5
-
 
 func _ready():
 	progress_bar_1.max_value = max_vida
@@ -34,3 +35,9 @@ func _on_damage_timer_timeout():
 	else:
 		print("¡Sin vida!")
 		damage_timer.stop()
+
+
+func _on_timer_2_timeout() -> void:
+	# Se actualiza el tiempo casa segundo
+	label.text = str(int(label.text) - 1)
+	
