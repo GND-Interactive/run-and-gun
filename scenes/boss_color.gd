@@ -96,7 +96,6 @@ func get_nearest_player() -> Node2D:
 
 
 
-
 @rpc("call_local", "reliable")
 func set_mode(new_mode: int):
 	mode = new_mode
