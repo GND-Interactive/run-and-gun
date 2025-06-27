@@ -11,6 +11,7 @@ extends CharacterBody2D
 
 @onready var chase: Timer = $Chase
 @onready var state: Timer = $state
+var target_position: Vector2 = Vector2.ZERO
 
 
 @export var hp := 1
@@ -44,16 +45,21 @@ func _process(_delta):
 		return
 
 
-
 func _physics_process(delta):
 	if not multiplayer.is_server():
-		pass
-	if player_chase and player:
-		var direction = (player.global_position - global_position).normalized()
-		velocity = direction * speed
-		move_and_collide(delta*velocity)
-	else:
-		velocity = Vector2.ZERO
+		return  
+
+	if player_chase:
+		var direction = (target_position - global_position)
+		if direction.length() < 10:  
+			player_chase = false
+			velocity = Vector2.ZERO
+			state.start()
+		else:
+			direction = direction.normalized()
+			velocity = direction * speed
+			move_and_collide(delta * velocity)
+
 		
 	
 
@@ -79,9 +85,7 @@ func get_nearest_player() -> Node2D:
 
 
 
-# ---------------------------
-# COLOR / MODOS
-# ---------------------------
+
 
 @rpc("call_local", "reliable")
 func set_mode(new_mode: int):
@@ -127,22 +131,26 @@ func change_state():
 	var player_ = get_nearest_player()
 	if mode_ == 0:
 		dash(player_)
+
 @rpc("call_local")
 func dash(player_):
 	player = player_
-	player_chase = true
-	chase.start()
+	if player:
+		target_position = player.global_position 
+		player_chase = true
+		chase.start()
 @rpc("call_local")
 func rayo(player):
 	pass
 @rpc("call_local")
 func _on_chase_timeout() -> void:
+	Debug.log("ratata")
 	player_chase = false
 	state.start()
 	
 
-
 func _on_state_timeout() -> void:
+	Debug.log("state cambio")
 	change_state()
 func win():
 	self.get_parent().get_parent().get_node("WinScreen").win()
