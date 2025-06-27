@@ -81,7 +81,17 @@ func get_nearest_player() -> Node2D:
 	if players.size() == 0:
 		return null
 
-	return players[randi() % players.size()]
+	# Filtrar jugadores vivos
+	var alive_players = []
+	for player in players:
+		if player.hp > 0:
+			alive_players.append(player)
+
+	if alive_players.size() == 0:
+		return null  # Todos están muertos
+
+	return alive_players[randi() % alive_players.size()]
+
 
 
 
@@ -138,7 +148,7 @@ func dash(player_):
 	if player:
 		target_position = player.global_position 
 		player_chase = true
-		chase.start()
+		
 @rpc("call_local")
 func rayo(player):
 	pass

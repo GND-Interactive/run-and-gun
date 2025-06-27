@@ -16,7 +16,7 @@ var damage= 1
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var pivot: Node2D = $Pivot
 @onready var fire_cd: Timer = $FireCD
-@export var hp = 5
+@export var hp = 2
 
 func _physics_process(delta: float) -> void:
 	

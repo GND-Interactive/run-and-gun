@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bxh21c6qx4vuj"]
 
-[ext_resource type="FontFile" uid="uid://bafiwycn8vvi8" path="res://assets/fonts/metalslug-font.ttf" id="1_ejph0"]
+[ext_resource type="FontFile" uid="uid://cnn2af224ow1r" path="res://assets/fonts/metalslug-font.ttf" id="1_ejph0"]
 [ext_resource type="Script" uid="uid://bycp4t238gsuu" path="res://scripts/win_screen.gd" id="1_w7yna"]
 
 [node name="WinScreen" type="Control"]
