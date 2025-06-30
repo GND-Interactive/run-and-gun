@@ -162,4 +162,4 @@ func _on_state_timeout() -> void:
 	Debug.log("state cambio")
 	change_state()
 func win():
-	self.get_parent().get_parent().get_node("WinScreen").win()
+	self.get_node("../../Camera2D/WinScreen").win()

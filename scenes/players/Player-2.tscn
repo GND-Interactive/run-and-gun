@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cw06trdvijq7y" path="res://scripts/MovementPlayer.gd" id="1_lr4pb"]
 [ext_resource type="PackedScene" uid="uid://bk1l3kpxw5qm7" path="res://scenes/input_sync.tscn" id="3_70nme"]
 [ext_resource type="Script" uid="uid://bk7em88k3untq" path="res://scripts/hitplayer.gd" id="4_gwvwa"]
+[ext_resource type="AudioStream" uid="uid://yuncq2vjy3ns" path="res://assets/sounds/Laser Weapons - Free Library/heavy_blast_012.wav" id="5_i2e6a"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kiej1"]
 radius = 0.885714
@@ -312,5 +313,8 @@ wait_time = 1.5
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_gwvwa")
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_i2e6a")
+volume_db = -50.0
 
 [connection signal="area_entered" from="Hitplayer" to="Hitplayer" method="_on_area_entered"]

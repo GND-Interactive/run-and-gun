@@ -1,10 +1,10 @@
 [gd_scene load_steps=20 format=3 uid="uid://ca78w8xxxqd45"]
 
 [ext_resource type="Shader" uid="uid://cwdtdmb0d4mp0" path="res://palette_swap.gdshader" id="1_0e48y"]
-[ext_resource type="Texture2D" uid="uid://5xkrvbu4qge7" path="res://assets/boss/Character_sheet.png" id="2_tabqh"]
+[ext_resource type="Texture2D" uid="uid://cn7xjvw8n8lvj" path="res://assets/boss/Character_sheet.png" id="2_tabqh"]
 [ext_resource type="Script" uid="uid://b5gkdfqlbfu5r" path="res://scenes/boss_color.gd" id="3_6rqxa"]
 [ext_resource type="Script" uid="uid://sbn7v3w5x7px" path="res://scenes/bosshitbox.gd" id="4_7uri2"]
-[ext_resource type="Texture2D" uid="uid://d1lttetpvdci7" path="res://assets/boss/weapon PNG/Laser_sheet.png" id="5_s7yal"]
+[ext_resource type="Texture2D" uid="uid://bv3811j13t45e" path="res://assets/boss/weapon PNG/Laser_sheet.png" id="5_s7yal"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xtgkl"]
 shader = ExtResource("1_0e48y")

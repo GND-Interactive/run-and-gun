@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cf8ype3b0y31w"]
+[gd_scene load_steps=9 format=3 uid="uid://cf8ype3b0y31w"]
 
 [ext_resource type="PackedScene" uid="uid://cgsspji18smle" path="res://lobby/lobby_screen.tscn" id="1_xldsp"]
 [ext_resource type="Script" uid="uid://cr2abnsynvkkq" path="res://lobby/join_screen.gd" id="2_0bjwb"]
 [ext_resource type="Theme" uid="uid://bwgdrcgopd0s1" path="res://lobby/lobby_theme.tres" id="3_i53lg"]
+[ext_resource type="Texture2D" uid="uid://d0hto4uisjnyu" path="res://assets/img/Metal-Trigger.png" id="3_ylfc3"]
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="4_q5f0x"]
 
 [sub_resource type="Animation" id="Animation_c2ij0"]
@@ -68,6 +69,10 @@ _data = {
 
 [node name="JoinScreen" instance=ExtResource("1_xldsp")]
 script = ExtResource("2_0bjwb")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2" index="0"]
+layout_mode = 2
+texture = ExtResource("3_ylfc3")
 
 [node name="Label" parent="MarginContainer2/VBoxContainer/Panel" index="0"]
 text = "Join"

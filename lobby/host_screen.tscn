@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bb87qnq3164s5"]
+[gd_scene load_steps=4 format=3 uid="uid://bb87qnq3164s5"]
 
 [ext_resource type="PackedScene" uid="uid://cgsspji18smle" path="res://lobby/lobby_screen.tscn" id="1_uvmm6"]
 [ext_resource type="Script" uid="uid://layh08o4sto4" path="res://lobby/host_screen.gd" id="2_l54gy"]
+[ext_resource type="Texture2D" uid="uid://d0hto4uisjnyu" path="res://assets/img/Metal-Trigger.png" id="3_d0kcq"]
 
 [node name="HostScreen" instance=ExtResource("1_uvmm6")]
 script = ExtResource("2_l54gy")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2" index="0"]
+layout_mode = 2
+texture = ExtResource("3_d0kcq")
 
 [node name="Label" parent="MarginContainer2/VBoxContainer/Panel" index="0"]
 text = "Host"

@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://bkid7lnellhu8"]
+
+[ext_resource type="Texture2D" uid="uid://b0fds1cas0xb1" path="res://assets/enemies/Enemy 3/fly_0.png" id="1_yimji"]
+[ext_resource type="Texture2D" uid="uid://c1gu7kbl7100o" path="res://assets/enemies/Enemy 3/fly_1.png" id="2_1d0nq"]
+[ext_resource type="Texture2D" uid="uid://54cp465f50dq" path="res://assets/enemies/Enemy 3/fly_2.png" id="3_q8chi"]
+[ext_resource type="Texture2D" uid="uid://j062ohsebr3r" path="res://assets/enemies/Enemy 3/fly_3.png" id="4_ark8j"]
+[ext_resource type="Texture2D" uid="uid://g5hpnkqaqtcs" path="res://assets/enemies/Enemy 3/fly_4.png" id="5_5yogs"]
+[ext_resource type="Texture2D" uid="uid://b20n4vqlqndqk" path="res://assets/enemies/Enemy 3/fly_5.png" id="6_2tjht"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yimji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1d0nq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_q8chi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ark8j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5yogs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2tjht")
+}],
+"loop": true,
+"name": &"Fly",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
