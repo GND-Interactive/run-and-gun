@@ -11,9 +11,10 @@ extends CharacterBody2D
 
 @onready var chase: Timer = $Chase
 @onready var state: Timer = $state
+var target_position: Vector2 = Vector2.ZERO
 
 
-var hp := 10
+@export var hp := 1
 var mode := 0
 var direction := Vector2.ZERO
 var last_sent_position := Vector2.ZERO
@@ -44,16 +45,21 @@ func _process(_delta):
 		return
 
 
-
 func _physics_process(delta):
 	if not multiplayer.is_server():
-		pass
-	if player_chase and player:
-		var direction = (player.global_position - global_position).normalized()
-		velocity = direction * speed
-		move_and_slide()
-	else:
-		velocity = Vector2.ZERO
+		return  
+
+	if player_chase:
+		var direction = (target_position - global_position)
+		if direction.length() < 10:  
+			player_chase = false
+			velocity = Vector2.ZERO
+			state.start()
+		else:
+			direction = direction.normalized()
+			velocity = direction * speed
+			move_and_collide(delta * velocity)
+
 		
 	
 
@@ -75,29 +81,20 @@ func get_nearest_player() -> Node2D:
 	if players.size() == 0:
 		return null
 
-	return players[randi() % players.size()]
+	# Filtrar jugadores vivos
+	var alive_players = []
+	for player in players:
+		if player.hp > 0:
+			alive_players.append(player)
+
+	if alive_players.size() == 0:
+		return null  # Todos están muertos
+
+	return alive_players[randi() % alive_players.size()]
 
 
-# ---------------------------
-# SALUD Y ESTADOS
-# ---------------------------
-
-var health := 10:
-	set(value):
-		health = value
-		if value <= 0:
-			print("QUE SUCEDE")
-			self.queue_free()
 
 
-@rpc("any_peer", "reliable")
-func take_damage():
-	if multiplayer.is_server():
-		health -= 1
-
-# ---------------------------
-# COLOR / MODOS
-# ---------------------------
 
 @rpc("call_local", "reliable")
 func set_mode(new_mode: int):
@@ -111,23 +108,30 @@ func _on_timer_timeout():
 		rpc("set_mode", new_mode)
 
 func set_hitbox(new_mode: int):
-	hitboxup.monitoring = (new_mode == 0 or new_mode == 1)
-	hitboxdown.monitoring = (new_mode == 0 or new_mode == 1)
-	hitboxleft.monitoring = (new_mode == 2 or new_mode == 3)
-	hitbox_right.monitoring = (new_mode == 2 or new_mode == 3)
-
-	if new_mode == 0:
-		hitboxup.color = Color.RED
-		hitboxdown.color = Color.BLUE
-	elif new_mode == 1:
-		hitboxup.color = Color.BLUE
-		hitboxdown.color = Color.RED
-	elif new_mode == 2:
-		hitboxleft.color = Color.RED
-		hitbox_right.color = Color.BLUE
-	elif new_mode == 3:
-		hitboxleft.color = Color.BLUE
-		hitbox_right.color = Color.RED
+	if new_mode == 0 or new_mode == 1:
+		hitboxup.monitoring = false
+		hitboxdown.monitoring = false
+		hitboxleft.monitoring = true
+		hitbox_right.monitoring = true
+		print(hitboxdown.monitoring)
+		if new_mode == 0:
+			hitboxleft.color= Color.RED
+			hitbox_right.color = Color.BLUE
+		else:
+			hitboxleft.color = Color.BLUE
+			hitbox_right.color = Color.RED
+	else:
+		hitboxup.monitoring = true
+		hitboxdown.monitoring = true
+		hitboxleft.monitoring = false
+		hitbox_right.monitoring = false
+		print(hitboxdown.monitoring)
+		if new_mode==2:
+			hitboxup.color= Color.RED
+			hitboxdown.color= Color.BLUE
+		else:
+			hitboxup.color = Color.BLUE
+			hitboxdown.color= Color.RED
 
 
 @rpc("call_local")
@@ -136,22 +140,26 @@ func change_state():
 	var player_ = get_nearest_player()
 	if mode_ == 0:
 		dash(player_)
+
 @rpc("call_local")
 func dash(player_):
 	player = player_
-	player_chase = true
-	chase.start()
+	if player:
+		target_position = player.global_position 
+		player_chase = true
+		
 @rpc("call_local")
 func rayo(player):
 	pass
 @rpc("call_local")
 func _on_chase_timeout() -> void:
+	Debug.log("ratata")
 	player_chase = false
 	state.start()
 	
 
-
 func _on_state_timeout() -> void:
+	Debug.log("state cambio")
 	change_state()
 func win():
 	self.get_node("../../Camera2D/WinScreen").win()

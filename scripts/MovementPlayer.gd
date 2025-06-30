@@ -1,4 +1,5 @@
 extends CharacterBody2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @onready var input_sync: input_sync = $InputSync
 @onready var label: Label = $Label
@@ -15,7 +16,7 @@ var damage= 1
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var pivot: Node2D = $Pivot
 @onready var fire_cd: Timer = $FireCD
-var hp = 5
+@export var hp = 2
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _physics_process(delta: float) -> void:

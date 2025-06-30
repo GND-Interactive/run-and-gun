@@ -288,6 +288,28 @@ shape = SubResource("RectangleShape2D_plvqx")
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(2362, 471)
 
+[node name="Label" type="Label" parent="Enemies/boss"]
+offset_left = -15.0
+offset_top = -58.0
+offset_right = 25.0
+offset_bottom = -35.0
+text = "Boss"
+
+[node name="WinScreen" parent="." instance=ExtResource("9_2ovie")]
+visible = false
+offset_left = 463.0
+offset_top = 337.0
+offset_right = 463.0
+offset_bottom = 337.0
+scale = Vector2(2.30576, 3.14308)
+
+[node name="Losescreen" parent="." instance=ExtResource("10_ht1ge")]
+visible = false
+offset_left = 469.0
+offset_top = 344.0
+offset_right = 469.0
+offset_bottom = 344.0
+scale = Vector2(1.40592, 2.67974)
 [connection signal="timeout" from="Timer" to="borders" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="borders" method="_on_timer2_2_timeout"]
 [connection signal="body_entered" from="borders/Area2D" to="borders" method="_on_area_2d_body_entered"]
