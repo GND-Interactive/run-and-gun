@@ -37,8 +37,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 6
+size_flags_vertical = 2
 script = ExtResource("1_dbklo")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
@@ -50,9 +50,9 @@ offset_right = 310.0
 offset_bottom = 60.0
 theme_override_styles/background = SubResource("StyleBoxFlat_rbb3k")
 theme_override_styles/fill = SubResource("StyleBoxTexture_rbb3k")
-max_value = 5.0
+max_value = 2.0
 step = 1.0
-value = 5.0
+value = 2.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="ProgressBar"]
@@ -62,7 +62,6 @@ offset_top = 61.0
 offset_right = 88.0
 offset_bottom = 93.0
 theme_override_font_sizes/font_size = 32
-text = "HP = 5"
 
 [node name="ProgressBar2" type="ProgressBar" parent="."]
 z_index = 1
@@ -77,9 +76,9 @@ offset_bottom = 60.0
 grow_horizontal = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_rbb3k")
 theme_override_styles/fill = SubResource("StyleBoxTexture_2st27")
-max_value = 5.0
+max_value = 2.0
 step = 1.0
-value = 5.0
+value = 2.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="ProgressBar2"]
@@ -93,12 +92,6 @@ offset_top = 61.0
 offset_bottom = 93.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 32
-text = "HP = 5"
-
-[node name="Timer" type="Timer" parent="."]
-process_callback = 0
-wait_time = 2.0
-autostart = true
 
 [node name="Label" type="Label" parent="."]
 modulate = Color(0.916955, 0.315685, 3.85046e-07, 1)
@@ -116,5 +109,4 @@ text = "120"
 [node name="Timer2" type="Timer" parent="."]
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

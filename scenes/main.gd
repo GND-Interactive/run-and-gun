@@ -4,10 +4,11 @@ extends Node2D
 @onready var spawn: Node2D = $Spawn
 @export var player_scene_1 = preload("res://scenes/players/Player-1.tscn")
 @export var player_scene_2= preload("res://scenes/players/Player-2.tscn")
-var player_scenes = [player_scene_1, player_scene_2]
 @onready var borders: Node2D = $borders
-
 @onready var enemies: Node2D = $Enemies
+@onready var health_bars: Control = $CanvasLayer/HealthBarPlayer
+
+var player_scenes = [player_scene_1, player_scene_2]
 
 const BOSS = preload("res://scenes/boss.tscn")
 
@@ -26,10 +27,23 @@ func _ready() -> void:
 		player_inst.global_position= spawn.get_child(i).global_position
 	
 
-## Comprobamos si movemos los enemigos
+## Funcion Process
+##
+## Corroboramos vida de cada jugador para actualizar la informacion
 func _process(delta: float) -> void:
-	pass
-	
+
+	var player_1_health = 0
+	var player_2_health = 0
+	var i = 0
+	for player in players.get_children():
+		if i == 0:
+			player_1_health = player.hp
+		elif i == 1:
+			player_2_health = player.hp
+		i += 1
+	health_bars.update_health_bars(player_1_health,player_2_health)
+
+
 func create_enemy_waves(amount: int, colores: Array[String], position: Vector2) -> void:
 	var wave = ENEMY_WAVE_1.instantiate()
 	enemies.add_child(wave)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bervrm08asanb"]
+[gd_scene load_steps=21 format=3 uid="uid://bervrm08asanb"]
 
 [ext_resource type="Script" uid="uid://cgxewe8sy2juq" path="res://scenes/main.gd" id="1_w8wmq"]
 [ext_resource type="Script" uid="uid://dc1rf43vo6q8x" path="res://scripts/camera_movement.gd" id="3_wubvj"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bpno8misn06f2" path="res://assets/ui/arrow_left_dark.png" id="12_plvqx"]
 [ext_resource type="Texture2D" uid="uid://bmm1bm5fmbr18" path="res://assets/ui/arrow_right_dark.png" id="13_kwl1m"]
 [ext_resource type="Texture2D" uid="uid://dpeabdkk31qlo" path="res://assets/ui/arrow_down_dark.png" id="14_ql35f"]
+[ext_resource type="PackedScene" uid="uid://vjgqvhmm7vnw" path="res://ui/health_bar_player.tscn" id="18_plvqx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_urp3g"]
 
@@ -288,7 +289,7 @@ shape = SubResource("RectangleShape2D_plvqx")
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(2362, 471)
 
-[node name="Label" type="Label" parent="Enemies/boss"]
+[node name="Enemies_boss#Label" type="Label" parent="."]
 offset_left = -15.0
 offset_top = -58.0
 offset_right = 25.0
@@ -310,6 +311,11 @@ offset_top = 344.0
 offset_right = 469.0
 offset_bottom = 344.0
 scale = Vector2(1.40592, 2.67974)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBarPlayer" parent="CanvasLayer" instance=ExtResource("18_plvqx")]
+
 [connection signal="timeout" from="Timer" to="borders" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="borders" method="_on_timer2_2_timeout"]
 [connection signal="body_entered" from="borders/Area2D" to="borders" method="_on_area_2d_body_entered"]

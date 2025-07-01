@@ -1,9 +1,6 @@
 extends Control
 
 ## Esta escena se convertira en la interfaz del juego
-## TODO 
-## 1. Añadir timer al centro de las barras de vida
-## 2. Añadir numeros que indiquen la cantidad de vida del jugador
 
 # Barra de vida y texto de vida jugador 1
 @onready var progress_bar_1: ProgressBar = $ProgressBar
@@ -14,37 +11,30 @@ extends Control
 # Timer para el Tiempo de partida
 @onready var timer_2: Timer = $Timer2
 @onready var level_timer: Label = $Label
-# Timer de prueba para bajar la vida
-@onready var damage_timer: Timer = $Timer
 
+## Vida maxima y vida inicial de los jugadores
+var max_hp = 2
 
-# Vida inicial y maxima 
-var vida = 5
-var max_vida = 5
+func _ready() -> void:
+	health_text_1.text = "HP = " + str(max_hp)
+	health_text_2.text = "HP = " + str(max_hp)
 
-func _ready():
-	progress_bar_1.max_value = max_vida
-	progress_bar_1.value = vida
-	progress_bar_2.max_value = max_vida
-	progress_bar_2.value = vida
+## Funcion update health bars
+##
+## Actualiza la barra de vida de acuerdo a la vida actual de ambos jugadores
+func update_health_bars(player_1_health: int, player_2_health: int) -> void:
+	# Asignar vida player 1
+	progress_bar_1.value = player_1_health
+	health_text_1.text = "HP = " + str(player_1_health)
+	# Asignar vida player 2
+	progress_bar_2.value = player_2_health
+	health_text_2.text = "HP = " + str(player_2_health)
+	print("health bars updated")
+
 	
-	damage_timer.wait_time = 1.0  # cada 1 segundo
-	damage_timer.timeout.connect(_on_damage_timer_timeout)
-	damage_timer.start()  # inicia el timer
-
-func _on_damage_timer_timeout():
-	if vida > 0:
-		vida -= 1
-		progress_bar_1.value = vida
-		health_text_1.text = "HP = %d" % vida
-		progress_bar_2.value = vida
-		health_text_2.text = "HP = %d" % vida
-		print("Daño recibido. Vida actual:", vida)
-	else:
-		print("¡Sin vida!")
-		damage_timer.stop()
-
-
+## Funcion timer
+##
+## Controla el tiempo en pantalla
 func _on_timer_2_timeout() -> void:
 	# Se actualiza el tiempo casa segundo
 	level_timer.text = str(int(level_timer.text) - 1)
