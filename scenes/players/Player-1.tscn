@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bge5mughwodej"]
+[gd_scene load_steps=33 format=3 uid="uid://bge5mughwodej"]
 
 [ext_resource type="Script" uid="uid://cw06trdvijq7y" path="res://scripts/MovementPlayer.gd" id="1_qmum8"]
 [ext_resource type="SpriteFrames" uid="uid://biaj7jb0gmace" path="res://scenes/players/Player-1-Sprite-Frames.tres" id="2_jjjug"]
@@ -250,6 +250,7 @@ properties/0/spawn = true
 properties/0/replication_mode = 1
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_qmum8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
